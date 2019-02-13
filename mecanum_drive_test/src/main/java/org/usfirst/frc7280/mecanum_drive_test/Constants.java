@@ -10,19 +10,21 @@ public class Constants {
 
     public static boolean kSensorPhase = true;
 
-    public static boolean kMotorInverted = true;
+    public static boolean kMotorInverted = false;
     
     // Elevator PID values 
-    public static final double kElevatorP = 0.005;
+    public static final double kElevatorP = 0.02;
     public static final double kElevatorI = 0.0;
     public static final double kElevatorD = 0.0;
     public static final double kElevatorF = 0.0;
-    public static final double kElevatorPeakOutput = 0.7;
+    public static final double kElevatorPeakOutput = 0.95;
 
     // Elevator height values
-    public static final double kFirstLevel = 8 * 4096;
-    public static final double kSecondLevel = 16 * 4096;
-    public static final double kThirdLevel = 24 * 4096;
+    public static final double kZeroLevel = 0;
+    public static final double kFirstLevel = -40000;
+    public static final double kSecondLevel = -160000;
+    public static final double kThirdLevel = -500000;
+    public static final double kFourthLevel = -670000;
 
     // Elevator current limit values
     public static final int kContinueCurrentLimit = 9;

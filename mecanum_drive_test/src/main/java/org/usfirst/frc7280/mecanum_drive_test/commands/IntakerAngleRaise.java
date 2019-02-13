@@ -7,23 +7,15 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.commands;
 
-import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Lift extends Command {
-
-  double targetPosition;
-
-  public Lift(double _position) {
+public class IntakerAngleRaise extends Command {
+  public IntakerAngleRaise() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.elevator);
-
-    // determine target position
-    targetPosition = _position;
-
+    requires(Robot.intaker);
   }
 
   // Called just before this Command runs the first time
@@ -34,26 +26,19 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    Robot.elevator.liftToPosition(targetPosition);
-
-   
+    Robot.intaker.intakerAngleRaise();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Robot.elevator.elevatorPosition == targetPosition) {
-      return true;
-    } else {
     return false;
-    }
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.stop();
+    Robot.intaker.intakerAngleRaise();
   }
 
   // Called when another command which requires one or more of the same

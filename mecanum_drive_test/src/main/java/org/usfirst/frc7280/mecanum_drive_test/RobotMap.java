@@ -16,5 +16,11 @@ public class RobotMap {
     public static final int intakerLeftMotor = 7;
     public static final int intakerRightMotor = 8;
 
+    // intaker solenoids
+    public static final int intakerArmSolenoid = 1;
+    public static final int intakerAngleForwardSolenoid = 4;
+    public static final int intakerAngleReverseSolenoid = 5;
+    public static final int intakerLiftSolenoid = 6;
+
 }
 

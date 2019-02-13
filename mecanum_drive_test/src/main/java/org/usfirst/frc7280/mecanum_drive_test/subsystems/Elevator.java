@@ -13,6 +13,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc7280.mecanum_drive_test.commands.*;
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
@@ -28,7 +30,12 @@ public class Elevator extends Subsystem {
   private TalonSRX elevatorSlave = new TalonSRX(RobotMap.elevatorSlaveMotor);
   public int elevatorPosition;
 
+  
+
   public Elevator(){
+
+    elevatorMaster.configFactoryDefault();
+
     elevatorMaster.setNeutralMode(NeutralMode.Brake);
     elevatorSlave.setNeutralMode(NeutralMode.Brake);
     
@@ -43,11 +50,11 @@ public class Elevator extends Subsystem {
 
     setMotorPID(elevatorMaster);
 
-    elevatorMaster.setSelectedSensorPosition(0, Constants.kSlotIdx, Constants.kTimeoutMs);
+    // elevatorMaster.setSelectedSensorPosition(0, Constants.kSlotIdx, Constants.kTimeoutMs);
 
     // current limit 
     elevatorMaster.enableCurrentLimit(true);
-    elevatorMaster.configFactoryDefault();
+    
     elevatorMaster.configContinuousCurrentLimit(Constants.kContinueCurrentLimit, Constants.kTimeoutMs);
     elevatorMaster.configPeakCurrentLimit(Constants.kPeakCurrentLimit, Constants.kTimeoutMs);
     elevatorMaster.configPeakCurrentDuration(Constants.kpeakCurrentDuration, Constants.kTimeoutMs);
@@ -61,8 +68,14 @@ public class Elevator extends Subsystem {
   }
 
   public void liftToPosition(double _position){
+
+ 
     elevatorMaster.set(ControlMode.Position, _position);
     elevatorPosition = elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx);
+
+    SmartDashboard.putNumber("current position", elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx));
+    SmartDashboard.putNumber("Target position", _position);
+    SmartDashboard.putNumber("output", elevatorMaster.getMotorOutputPercent());
   }
 
   public void stop(){
@@ -84,18 +97,28 @@ public class Elevator extends Subsystem {
 		_talon.configPeakOutputForward(1, Constants.kTimeoutMs);
 		_talon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
-		_talon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+    _talon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+    
+    _talon.configAllowableClosedloopError(1, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 
   }
   
   private void setMotorPID(TalonSRX _talon){
     
     /* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
-		_talon.config_kF(Constants.kPIDLoopIdx, Constants.kElevatorF, Constants.kTimeoutMs);
-		_talon.config_kP(Constants.kPIDLoopIdx, Constants.kElevatorP, Constants.kTimeoutMs);
-		_talon.config_kI(Constants.kPIDLoopIdx, Constants.kElevatorI, Constants.kTimeoutMs);
-		_talon.config_kD(Constants.kPIDLoopIdx, Constants.kElevatorD, Constants.kTimeoutMs);
+		_talon.config_kF(Constants.kSlotIdx, Constants.kElevatorF, Constants.kTimeoutMs);
+		_talon.config_kP(Constants.kSlotIdx, Constants.kElevatorP, Constants.kTimeoutMs);
+		_talon.config_kI(Constants.kSlotIdx, Constants.kElevatorI, Constants.kTimeoutMs);
+    _talon.config_kD(Constants.kSlotIdx, Constants.kElevatorD, Constants.kTimeoutMs);
+    
 
+  }
+
+
+  // use for testing
+  public void testRun(double _speed){
+    elevatorMaster.set(ControlMode.PercentOutput, _speed/3);
+    elevatorSlave.follow(elevatorMaster);
   }
 
 }
