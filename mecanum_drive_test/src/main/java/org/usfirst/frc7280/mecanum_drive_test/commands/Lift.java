@@ -7,7 +7,6 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.commands;
 
-import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -53,7 +52,6 @@ public class Lift extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.stop();
   }
 
   // Called when another command which requires one or more of the same
