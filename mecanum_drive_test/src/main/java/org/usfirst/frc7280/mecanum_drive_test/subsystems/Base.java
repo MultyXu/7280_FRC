@@ -37,12 +37,19 @@ public class Base extends Subsystem {
     private TalonSRX rightFrontMotor = new TalonSRX(RobotMap.rightFrontMotor);
     private TalonSRX rightRearMotor = new TalonSRX(RobotMap.rightRearMotor);
 
+    RobotMap robotMap = new RobotMap();
+
     public Base() {
 
-        setMotorPID(leftFrontMotor);
-        setMotorPID(leftRearMotor);
-        setMotorPID(rightFrontMotor);
-        setMotorPID(rightRearMotor);
+        robotMap.TalonSRXInit(leftFrontMotor);
+        robotMap.TalonSRXInit(leftRearMotor);
+        robotMap.TalonSRXInit(rightFrontMotor);
+        robotMap.TalonSRXInit(rightRearMotor);
+
+        robotMap.setMotorPID(leftFrontMotor, 0, 0, 0, 0);
+        robotMap.setMotorPID(leftRearMotor, 0, 0, 0, 0);
+        robotMap.setMotorPID(rightFrontMotor, 0, 0, 0, 0);
+        robotMap.setMotorPID(rightRearMotor, 0, 0, 0, 0);
 
         leftFrontMotor.setInverted(true);
         leftRearMotor.setInverted(true);
@@ -102,34 +109,6 @@ public class Base extends Subsystem {
         rightFrontMotor.setNeutralMode(mode);
         rightRearMotor.setNeutralMode(mode);
     }
-
-    private void setMotorPID(TalonSRX _talon){
-    
-        /* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
-        _talon.config_kF(Constants.kPIDLoopIdx, Constants.kElevatorF, Constants.kTimeoutMs);
-        _talon.config_kP(Constants.kPIDLoopIdx, Constants.kElevatorP, Constants.kTimeoutMs);
-        _talon.config_kI(Constants.kPIDLoopIdx, Constants.kElevatorI, Constants.kTimeoutMs);
-        _talon.config_kD(Constants.kPIDLoopIdx, Constants.kElevatorD, Constants.kTimeoutMs);
-    
-    }
-
-    private void TalonSRXInit(TalonSRX _talon) {
-
-		// set up TalonSRX and closed loop
-    // select an encoder and set it
-    _talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-    
-    // make sure the sensor gieves the postive value whent the output is positive. 
-		_talon.setSensorPhase(true);
-
-		_talon.configNominalOutputForward(0, Constants.kTimeoutMs);
-		_talon.configNominalOutputReverse(0, Constants.kTimeoutMs);
-		_talon.configPeakOutputForward(1, Constants.kTimeoutMs);
-		_talon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
-
-		_talon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-
-  }
 
 }
 

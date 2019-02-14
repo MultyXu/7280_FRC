@@ -35,5 +35,9 @@ public class Constants {
     public static final double takeSpeed = 0.5;
     public static final double shootSpeed = -0.5;
 
+    // Intaker Anlge
+    public static final int angle90 = 0;
+    public static final int angle180 = 3 * 4096;
+
 
 }

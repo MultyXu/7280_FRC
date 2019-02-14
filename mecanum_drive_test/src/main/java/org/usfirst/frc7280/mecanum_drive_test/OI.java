@@ -14,7 +14,6 @@ package org.usfirst.frc7280.mecanum_drive_test;
 import org.usfirst.frc7280.mecanum_drive_test.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc7280.mecanum_drive_test.subsystems.*;
