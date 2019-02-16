@@ -65,12 +65,7 @@ public class OI {
     public JoystickButton liftThirdLevel;
     public JoystickButton liftFourthLevel;
 
-    public JoystickButton intakerArmOpen;
-    public JoystickButton intakerArmClose;
-    public JoystickButton intakerLiftUp;
-    public JoystickButton intakerLiftDown;
-    public JoystickButton raiseArmAngle;
-    public JoystickButton lowerArmAngle; 
+
     
 
     public OI() {
@@ -90,12 +85,7 @@ public class OI {
         liftThirdLevel = new JoystickButton(functionStick, 4);
         liftFourthLevel = new JoystickButton(functionStick, 5);
 
-        intakerArmOpen = new JoystickButton(functionStick, 6);
-        intakerArmClose = new JoystickButton(functionStick, 7);
-        intakerLiftUp = new JoystickButton(functionStick, 8);
-        intakerLiftDown = new JoystickButton(functionStick, 9);
-        raiseArmAngle = new JoystickButton(functionStick, 10);
-        lowerArmAngle = new JoystickButton(functionStick, 11);
+    
 
         shoot.whileHeld(new Grab(Constants.shootSpeed));
         grab.whileHeld(new Grab(Constants.takeSpeed));
@@ -106,13 +96,6 @@ public class OI {
         liftThirdLevel.whenPressed(new Lift(Constants.kThirdLevel));
         liftFourthLevel.whenPressed(new Lift(Constants.kFourthLevel));
 
-        intakerArmOpen.whenPressed(new IntakerArmOpen());
-        intakerArmClose.whenPressed(new IntakerArmClose());
-        intakerLiftUp.whenPressed(new IntakerLiftUp());
-        intakerLiftDown.whenPressed(new IntakerLiftDown());
-        raiseArmAngle.whenPressed(new IntakerAngleRaise());
-        lowerArmAngle.whenPressed(new IntakerAngleLower());
-        
 
 
         
