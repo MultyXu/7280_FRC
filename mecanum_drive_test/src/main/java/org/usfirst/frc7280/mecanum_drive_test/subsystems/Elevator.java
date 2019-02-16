@@ -36,7 +36,7 @@ public class Elevator extends Subsystem {
 
   public Elevator(){
     
-    robotMap.TalonSRXInit(elevatorMaster); 
+    robotMap.TalonSRXInit(elevatorMaster, Constants.kElevatorPeakOutput); 
     
     elevatorMaster.setNeutralMode(NeutralMode.Brake);
     elevatorSlave.setNeutralMode(NeutralMode.Brake);

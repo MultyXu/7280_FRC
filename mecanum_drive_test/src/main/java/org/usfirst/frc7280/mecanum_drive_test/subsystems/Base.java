@@ -41,15 +41,15 @@ public class Base extends Subsystem {
 
     public Base() {
 
-        robotMap.TalonSRXInit(leftFrontMotor);
-        robotMap.TalonSRXInit(leftRearMotor);
-        robotMap.TalonSRXInit(rightFrontMotor);
-        robotMap.TalonSRXInit(rightRearMotor);
+        robotMap.TalonSRXInit(leftFrontMotor, Constants.kBasePeakOutput);
+        robotMap.TalonSRXInit(leftRearMotor, Constants.kBasePeakOutput);
+        robotMap.TalonSRXInit(rightFrontMotor, Constants.kBasePeakOutput);
+        robotMap.TalonSRXInit(rightRearMotor, Constants.kBasePeakOutput);
 
-        robotMap.setMotorPID(leftFrontMotor, 0, 0, 0, 0);
-        robotMap.setMotorPID(leftRearMotor, 0, 0, 0, 0);
-        robotMap.setMotorPID(rightFrontMotor, 0, 0, 0, 0);
-        robotMap.setMotorPID(rightRearMotor, 0, 0, 0, 0);
+        robotMap.setMotorPID(leftFrontMotor, 0.5, 0, 0, 0);
+        robotMap.setMotorPID(leftRearMotor, 0.5, 0, 0, 0);
+        robotMap.setMotorPID(rightFrontMotor, 0.5, 0, 0, 0);
+        robotMap.setMotorPID(rightRearMotor, 0.5, 0, 0, 0);
 
         leftFrontMotor.setInverted(true);
         leftRearMotor.setInverted(true);

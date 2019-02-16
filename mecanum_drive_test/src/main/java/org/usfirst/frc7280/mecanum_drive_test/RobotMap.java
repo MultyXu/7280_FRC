@@ -27,7 +27,7 @@ public class RobotMap {
 
     }
 
-    public void TalonSRXInit(TalonSRX _talon) {
+    public void TalonSRXInit(TalonSRX _talon, double _peakOutput) {
     
 		// set up TalonSRX and closed loop
         // select an encoder and set it
@@ -46,7 +46,7 @@ public class RobotMap {
     
         _talon.configAllowableClosedloopError(1, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     
-        _talon.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorPeakOutput, Constants.kTimeoutMs);
+        _talon.configClosedLoopPeakOutput(Constants.kSlotIdx, _peakOutput, Constants.kTimeoutMs);
   }
 
   public void setMotorPID(TalonSRX _talon, double kF, double kP, double kI, double kD){

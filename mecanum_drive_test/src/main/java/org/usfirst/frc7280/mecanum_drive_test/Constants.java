@@ -11,6 +11,12 @@ public class Constants {
     public static boolean kSensorPhase = true;
 
     public static boolean kMotorInverted = false;
+
+    // Base PID
+    public static final double kBasePeakOutput = 0.8;
+
+
+    // Base speed 
     
     // Elevator PID values 
     public static final double kElevatorP = 0.02;
@@ -34,10 +40,18 @@ public class Constants {
     // Intaker motor Speed values
     public static final double takeSpeed = 0.5;
     public static final double shootSpeed = -0.5;
+    
+    // Arm PID values
+    public static final double kArmP = 0.02;
+    public static final double kArmI = 0.0;
+    public static final double kArmD = 0.0;
+    public static final double kArmF = 0.0;
+    public static final double kArmPeakOutput = 0.4;
+    
+    // Arm lift values
+    public static final int kLift = 3 * 4096;
+    public static final int kDown = 0;
 
-    // Intaker Anlge
-    public static final int angle90 = 0;
-    public static final int angle180 = 3 * 4096;
 
 
 }

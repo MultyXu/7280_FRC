@@ -64,6 +64,12 @@ public class OI {
     public JoystickButton liftSecondLevel;
     public JoystickButton liftThirdLevel;
     public JoystickButton liftFourthLevel;
+    
+    public JoystickButton intakerLift;
+    public JoystickButton intakerDown;
+
+    public JoystickButton armLift;
+    public JoystickButton armDown;
 
 
     
@@ -85,6 +91,11 @@ public class OI {
         liftThirdLevel = new JoystickButton(functionStick, 4);
         liftFourthLevel = new JoystickButton(functionStick, 5);
 
+        intakerLift = new JoystickButton(functionStick, 6);
+        intakerDown = new JoystickButton(functionStick, 7);
+        
+        armLift= new JoystickButton(functionStick, 8);
+        armDown = new JoystickButton(functionStick, 9);
     
 
         shoot.whileHeld(new Grab(Constants.shootSpeed));
@@ -95,7 +106,12 @@ public class OI {
         liftSecondLevel.whenPressed(new Lift(Constants.kSecondLevel));
         liftThirdLevel.whenPressed(new Lift(Constants.kThirdLevel));
         liftFourthLevel.whenPressed(new Lift(Constants.kFourthLevel));
+        
+        intakerLift.whenPressed(new IntakerLiftUp());
+        intakerDown.whenPressed(new IntakerLiftDown());
 
+        armLift.whenPressed(new ArmLift());
+        armDown.whenPressed(new ArmDown());
 
 
         
