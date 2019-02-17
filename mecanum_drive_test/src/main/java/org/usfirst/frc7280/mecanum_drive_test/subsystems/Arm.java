@@ -28,7 +28,8 @@ public class Arm extends Subsystem {
   public Arm() {
 
     armMotor.configFactoryDefault();
-    robotMap.TalonSRXInit(armMotor, Constants.kArmPeakOutput); 
+    robotMap.TalonSRXInit(armMotor, Constants.kArmPeakOutput);
+    armMotor.setSensorPhase(false);
 
     armMotor.setNeutralMode(NeutralMode.Brake);
     robotMap.setMotorPID(armMotor,

@@ -82,8 +82,8 @@ public class OI {
         functionStick = new Joystick(1);
         motionStick = new Joystick(0);
         
-        shoot = new JoystickButton(functionStick, 6);
-        grab = new JoystickButton(functionStick, 5);
+        shoot = new JoystickButton(functionStick, 7);
+        grab = new JoystickButton(functionStick, 8);
 
         liftZero = new JoystickButton(functionStick, 1);
         liftFirstLevel = new JoystickButton(functionStick, 2);
@@ -91,15 +91,15 @@ public class OI {
         liftThirdLevel = new JoystickButton(functionStick, 4);
         liftFourthLevel = new JoystickButton(functionStick, 5);
 
-        intakerLift = new JoystickButton(functionStick, 6);
-        intakerDown = new JoystickButton(functionStick, 7);
+        intakerLift = new JoystickButton(functionStick, 9);
+        intakerDown = new JoystickButton(functionStick, 10);
         
-        armLift= new JoystickButton(functionStick, 8);
-        armDown = new JoystickButton(functionStick, 9);
+        armLift= new JoystickButton(functionStick, 11);
+        armDown = new JoystickButton(functionStick, 12);
     
 
-        shoot.whileHeld(new Grab(Constants.shootSpeed));
-        grab.whileHeld(new Grab(Constants.takeSpeed));
+        shoot.toggleWhenPressed(new Take());
+        grab.toggleWhenPressed(new Grab());
 
         liftZero.whenPressed(new Lift(Constants.kZeroLevel));
         liftFirstLevel.whenPressed(new Lift(Constants.kFirstLevel));
@@ -120,7 +120,7 @@ public class OI {
         // SmartDashboard Buttons
         SmartDashboard.putData("Drive", new Drive());
         SmartDashboard.putData("Lift", new Lift(Constants.kSecondLevel));
-        SmartDashboard.putData("Grab", new Grab(Constants.takeSpeed));
+        SmartDashboard.putData("Grab", new Grab());
 
 
     }

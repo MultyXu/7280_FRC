@@ -38,8 +38,8 @@ public class Constants {
     public static final int kpeakCurrentDuration = 10;
 
     // Intaker motor Speed values
-    public static final double takeSpeed = 0.5;
-    public static final double shootSpeed = -0.5;
+    public static final double takeSpeed = 0.2;
+    public static final double shootSpeed = -0.2;
     
     // Arm PID values
     public static final double kArmP = 0.02;
@@ -49,7 +49,7 @@ public class Constants {
     public static final double kArmPeakOutput = 0.4;
     
     // Arm lift values
-    public static final int kLift = 3 * 4096;
+    public static final int kLift = 30000 / 2;
     public static final int kDown = 0;
 
 
