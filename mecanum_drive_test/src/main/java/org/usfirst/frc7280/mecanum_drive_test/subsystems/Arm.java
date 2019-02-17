@@ -50,11 +50,13 @@ public class Arm extends Subsystem {
   }
 
   public void lift(){
+    armMotor.configClosedLoopPeakOutput(Constants.kSlotIdx, 1, Constants.kTimeoutMs);
     armMotor.set(ControlMode.Position, Constants.kLift);
 
   }
 
   public void down(){
+    armMotor.configClosedLoopPeakOutput(Constants.kSlotIdx, 0.2, Constants.kTimeoutMs);
     armMotor.set(ControlMode.Position, Constants.kDown);
 
   }

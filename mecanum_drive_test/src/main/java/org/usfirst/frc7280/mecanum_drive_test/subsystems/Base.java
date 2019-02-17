@@ -82,15 +82,20 @@ public class Base extends Subsystem {
     public void drive(double yValue, double xValue, double zValue){
         motorMode(NeutralMode.Coast);
 
-        double frontLeftSpeed = (yValue + xValue - zValue)/4 ;
-        double rearLeftSpeed = (yValue - xValue - zValue)/4 ;
-        double frontRightSpeed = (yValue - xValue + zValue)/4 ;
-        double rearRighttSpeed = (yValue + xValue + zValue)/4 ;
+        // double frontLeftSpeed = (yValue + xValue - zValue) * 200;
+        // double rearLeftSpeed = (yValue - xValue - zValue) * 200;
+        // double frontRightSpeed = (yValue - xValue + zValue) * 200;
+        // double rearRighttSpeed = (yValue + xValue + zValue) * 200;
         
         // leftFrontMotor.set(ControlMode.Velocity, frontLeftSpeed);
         // leftRearMotor.set(ControlMode.Velocity, rearLeftSpeed);
         // rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
         // rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
+
+        double frontLeftSpeed = (yValue + xValue - zValue)/5 ;
+        double rearLeftSpeed = (yValue - xValue - zValue)/5 ;
+        double frontRightSpeed = (yValue - xValue + zValue)/5 ;
+        double rearRighttSpeed = (yValue + xValue + zValue)/5 ;
 
         leftFrontMotor.set(ControlMode.PercentOutput, frontLeftSpeed);
         leftRearMotor.set(ControlMode.PercentOutput, rearLeftSpeed);
@@ -109,6 +114,16 @@ public class Base extends Subsystem {
         leftRearMotor.setNeutralMode(mode);
         rightFrontMotor.setNeutralMode(mode);
         rightRearMotor.setNeutralMode(mode);
+    }
+
+    private void setLimit(double _speed){
+        if(_speed > 200) {
+            _speed = 200;
+        } if(_speed < -200){
+            _speed = -200;
+        } else {
+            _speed = _speed;
+        }
     }
 
 }

@@ -19,18 +19,34 @@ public class Constants {
     // Base speed 
     
     // Elevator PID values 
-    public static final double kElevatorP = 0.02;
+    public static final double kElevatorP = 0.03;
     public static final double kElevatorI = 0.0;
     public static final double kElevatorD = 0.0;
     public static final double kElevatorF = 0.0;
-    public static final double kElevatorPeakOutput = 0.4;
+    public static final double kElevatorPeakOutput = 0.7;
+    
+    public static final double kElevatorDownP = 0.015;
+    public static final double kElevatorDownI = 0.0;
+    public static final double kElevatorDownD = 0.0;
+    public static final double kElevatorDownPeakOutput = 0.15;
+
+    public static final double kElevatorHigherP = 0.06;
+    public static final double kElevatorHigherI = 0.0;
+    public static final double kElevatorHigherD = 0.0;
+    public static final double kElevatorHigherF = 0.0;
+    public static final double kElevatorHigherPeakOutput = 0.7;
+
+
+
+
+
 
     // Elevator height values
     public static final double kZeroLevel = 0;
-    public static final double kFirstLevel = -40000;
-    public static final double kSecondLevel = -160000;
-    public static final double kThirdLevel = -300000;
-    public static final double kFourthLevel = -500000;
+    public static final double kFirstLevel = -30000;
+    public static final double kSecondLevel = -60000;
+    public static final double kThirdLevel = -90000;
+    public static final double kFourthLevel = -120000;
 
     // Elevator current limit values
     public static final int kContinueCurrentLimit = 7;
@@ -42,15 +58,15 @@ public class Constants {
     public static final double shootSpeed = -0.2;
     
     // Arm PID values
-    public static final double kArmP = 0.03;
+    public static final double kArmP = 0.09;
     public static final double kArmI = 0;
     public static final double kArmD = 0;
     public static final double kArmF = 0.0;
     public static final double kArmPeakOutput = 1;
     
     // Arm lift values
-    public static final int kLift = 20000;
-    public static final int kDown = 0;
+    public static final int kLift = 30000;
+    public static final int kDown = 3000;
 
 
 
