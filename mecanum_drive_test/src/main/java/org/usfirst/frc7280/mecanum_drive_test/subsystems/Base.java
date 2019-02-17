@@ -82,15 +82,20 @@ public class Base extends Subsystem {
     public void drive(double yValue, double xValue, double zValue){
         motorMode(NeutralMode.Coast);
 
-        double frontLeftSpeed = (yValue + xValue - zValue)/4 * 500 * 4096 /600;
-        double rearLeftSpeed = (yValue - xValue - zValue)/4 * 500 * 4096 /600;
-        double frontRightSpeed = (yValue - xValue + zValue)/4 * 500 * 4096 /600;
-        double rearRighttSpeed = (yValue + xValue + zValue)/4 * 500 * 4096 /600;
+        double frontLeftSpeed = (yValue + xValue - zValue)/4 ;
+        double rearLeftSpeed = (yValue - xValue - zValue)/4 ;
+        double frontRightSpeed = (yValue - xValue + zValue)/4 ;
+        double rearRighttSpeed = (yValue + xValue + zValue)/4 ;
         
-        leftFrontMotor.set(ControlMode.Velocity, frontLeftSpeed);
-        leftRearMotor.set(ControlMode.Velocity, rearLeftSpeed);
-        rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
-        rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
+        // leftFrontMotor.set(ControlMode.Velocity, frontLeftSpeed);
+        // leftRearMotor.set(ControlMode.Velocity, rearLeftSpeed);
+        // rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
+        // rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
+
+        leftFrontMotor.set(ControlMode.PercentOutput, frontLeftSpeed);
+        leftRearMotor.set(ControlMode.PercentOutput, rearLeftSpeed);
+        rightFrontMotor.set(ControlMode.PercentOutput, frontRightSpeed);
+        rightRearMotor.set(ControlMode.PercentOutput, rearRighttSpeed);
     }
 
     public void stop(){

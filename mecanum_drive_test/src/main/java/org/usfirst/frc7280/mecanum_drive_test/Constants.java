@@ -23,7 +23,7 @@ public class Constants {
     public static final double kElevatorI = 0.0;
     public static final double kElevatorD = 0.0;
     public static final double kElevatorF = 0.0;
-    public static final double kElevatorPeakOutput = 0.95;
+    public static final double kElevatorPeakOutput = 0.5;
 
     // Elevator height values
     public static final double kZeroLevel = 0;
