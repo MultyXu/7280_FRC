@@ -23,18 +23,18 @@ public class Constants {
     public static final double kElevatorI = 0.0;
     public static final double kElevatorD = 0.0;
     public static final double kElevatorF = 0.0;
-    public static final double kElevatorPeakOutput = 0.5;
+    public static final double kElevatorPeakOutput = 0.4;
 
     // Elevator height values
     public static final double kZeroLevel = 0;
     public static final double kFirstLevel = -40000;
     public static final double kSecondLevel = -160000;
-    public static final double kThirdLevel = -500000;
-    public static final double kFourthLevel = -670000;
+    public static final double kThirdLevel = -300000;
+    public static final double kFourthLevel = -500000;
 
     // Elevator current limit values
-    public static final int kContinueCurrentLimit = 9;
-    public static final int kPeakCurrentLimit = 15;
+    public static final int kContinueCurrentLimit = 7;
+    public static final int kPeakCurrentLimit = 13;
     public static final int kpeakCurrentDuration = 10;
 
     // Intaker motor Speed values
@@ -42,14 +42,14 @@ public class Constants {
     public static final double shootSpeed = -0.2;
     
     // Arm PID values
-    public static final double kArmP = 0.02;
-    public static final double kArmI = 0.0;
-    public static final double kArmD = 0.0;
+    public static final double kArmP = 0.03;
+    public static final double kArmI = 0;
+    public static final double kArmD = 0;
     public static final double kArmF = 0.0;
-    public static final double kArmPeakOutput = 0.4;
+    public static final double kArmPeakOutput = 1;
     
     // Arm lift values
-    public static final int kLift = 30000 / 2;
+    public static final int kLift = 20000;
     public static final int kDown = 0;
 
 

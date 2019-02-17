@@ -20,7 +20,7 @@ public class RobotMap {
 
     // intaker motor & solenoid
     public static final int intakerMotor = 8;
-    public static final int intakerSolenoid = 1;
+    public static final int intakerSolenoid = 0;
 
 
     public RobotMap(){

@@ -100,6 +100,7 @@ public class OI {
 
         shoot.toggleWhenPressed(new Take());
         grab.toggleWhenPressed(new Grab());
+    
 
         liftZero.whenPressed(new Lift(Constants.kZeroLevel));
         liftFirstLevel.whenPressed(new Lift(Constants.kFirstLevel));
