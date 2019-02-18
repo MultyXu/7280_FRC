@@ -96,11 +96,58 @@ public class Base extends Subsystem {
         double rearLeftSpeed = (yValue - xValue - zValue)/5 ;
         double frontRightSpeed = (yValue - xValue + zValue)/5 ;
         double rearRighttSpeed = (yValue + xValue + zValue)/5 ;
+        setLimit(frontLeftSpeed);
+        setLimit(rearLeftSpeed);
+        setLimit(frontRightSpeed);
+        setLimit(rearRighttSpeed);
+
 
         leftFrontMotor.set(ControlMode.PercentOutput, frontLeftSpeed);
         leftRearMotor.set(ControlMode.PercentOutput, rearLeftSpeed);
         rightFrontMotor.set(ControlMode.PercentOutput, frontRightSpeed);
         rightRearMotor.set(ControlMode.PercentOutput, rearRighttSpeed);
+    }
+
+    public void moveFoward(){
+        leftFrontMotor.set(ControlMode.PercentOutput, 0.2);
+        leftRearMotor.set(ControlMode.PercentOutput, 0.2);
+        rightFrontMotor.set(ControlMode.PercentOutput, 0.2);
+        rightRearMotor.set(ControlMode.PercentOutput, 0.2);
+    }
+
+    public void moveBack(){
+        leftFrontMotor.set(ControlMode.PercentOutput, -0.2);
+        leftRearMotor.set(ControlMode.PercentOutput, -0.2);
+        rightFrontMotor.set(ControlMode.PercentOutput, -0.2);
+        rightRearMotor.set(ControlMode.PercentOutput, -0.2);
+    }
+
+    public void moveLeft(){
+        leftFrontMotor.set(ControlMode.PercentOutput, 0.2);
+        leftRearMotor.set(ControlMode.PercentOutput, -0.2);
+        rightFrontMotor.set(ControlMode.PercentOutput, -0.2);
+        rightRearMotor.set(ControlMode.PercentOutput, 0.2);
+    }
+
+    public void moveRight(){
+        leftFrontMotor.set(ControlMode.PercentOutput, -0.2);
+        leftRearMotor.set(ControlMode.PercentOutput, 0.2);
+        rightFrontMotor.set(ControlMode.PercentOutput, 0.2);
+        rightRearMotor.set(ControlMode.PercentOutput, -0.2);
+    }
+
+    public void turnLeft(){
+        leftFrontMotor.set(ControlMode.PercentOutput, -0.2);
+        leftRearMotor.set(ControlMode.PercentOutput, -0.2);
+        rightFrontMotor.set(ControlMode.PercentOutput, 0.2);
+        rightRearMotor.set(ControlMode.PercentOutput, 0.2);
+    }
+
+    public void turnRighet(){
+        leftFrontMotor.set(ControlMode.PercentOutput, 0.2);
+        leftRearMotor.set(ControlMode.PercentOutput, 0.2);
+        rightFrontMotor.set(ControlMode.PercentOutput, -0.2);
+        rightRearMotor.set(ControlMode.PercentOutput, -0.2);
     }
 
     public void stop(){

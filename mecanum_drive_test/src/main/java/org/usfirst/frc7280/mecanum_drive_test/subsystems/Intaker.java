@@ -69,11 +69,11 @@ public class Intaker extends Subsystem {
         intakerMotor.set(ControlMode.PercentOutput, _motorSpeed);
     }
 
-    public void intakerLiftUp(){
+    public void cylinderUp(){
         intakerSolenoid.set(true);        
     }
 
-    public void intakerLiftDown(){
+    public void cylinderDown(){
         intakerSolenoid.set(false);
     }
 }

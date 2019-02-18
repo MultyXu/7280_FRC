@@ -11,8 +11,8 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakerLiftUp extends Command {
-  public IntakerLiftUp() {
+public class SolenoidActivate extends Command {
+  public SolenoidActivate() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.intaker);
@@ -26,7 +26,7 @@ public class IntakerLiftUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intaker.intakerLiftUp();
+    Robot.intaker.cylinderUp();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,7 +38,7 @@ public class IntakerLiftUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intaker.intakerLiftUp();
+    Robot.intaker.cylinderDown();
   }
 
   // Called when another command which requires one or more of the same

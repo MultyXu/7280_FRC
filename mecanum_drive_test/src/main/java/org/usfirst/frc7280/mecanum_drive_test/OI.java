@@ -65,8 +65,7 @@ public class OI {
     public JoystickButton liftThirdLevel;
     public JoystickButton liftFourthLevel;
     
-    public JoystickButton intakerLift;
-    public JoystickButton intakerDown;
+    public JoystickButton solenoidActivate;
 
     public JoystickButton armLift;
     public JoystickButton armDown;
@@ -91,8 +90,7 @@ public class OI {
         liftThirdLevel = new JoystickButton(functionStick, 4);
         liftFourthLevel = new JoystickButton(functionStick, 5);
 
-        intakerLift = new JoystickButton(functionStick, 9);
-        intakerDown = new JoystickButton(functionStick, 10);
+        solenoidActivate = new JoystickButton(functionStick, 9);
         
         armLift= new JoystickButton(functionStick, 11);
         armDown = new JoystickButton(functionStick, 12);
@@ -108,8 +106,7 @@ public class OI {
         liftThirdLevel.whenPressed(new Lift(Constants.kThirdLevel));
         liftFourthLevel.whenPressed(new Lift(Constants.kFourthLevel));
         
-        intakerLift.whenPressed(new IntakerLiftUp());
-        intakerDown.whenPressed(new IntakerLiftDown());
+        solenoidActivate.toggleWhenPressed(new SolenoidActivate());
 
         armLift.whenPressed(new ArmLift());
         armDown.whenPressed(new ArmDown());
