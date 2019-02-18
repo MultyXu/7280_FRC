@@ -64,6 +64,8 @@ public class OI {
     public JoystickButton liftSecondLevel;
     public JoystickButton liftThirdLevel;
     public JoystickButton liftFourthLevel;
+    public JoystickButton liftFifthLevel;
+    public JoystickButton elevatorDown;
     
     public JoystickButton solenoidActivate;
 
@@ -81,19 +83,20 @@ public class OI {
         functionStick = new Joystick(1);
         motionStick = new Joystick(0);
         
-        shoot = new JoystickButton(functionStick, 7);
-        grab = new JoystickButton(functionStick, 8);
+        shoot = new JoystickButton(motionStick, 7);
+        grab = new JoystickButton(motionStick, 8);
 
         liftZero = new JoystickButton(functionStick, 1);
         liftFirstLevel = new JoystickButton(functionStick, 2);
         liftSecondLevel = new JoystickButton(functionStick, 3);
         liftThirdLevel = new JoystickButton(functionStick, 4);
         liftFourthLevel = new JoystickButton(functionStick, 5);
+        liftFifthLevel = new JoystickButton(functionStick, 6);
 
         solenoidActivate = new JoystickButton(functionStick, 9);
         
-        armLift= new JoystickButton(functionStick, 11);
-        armDown = new JoystickButton(functionStick, 12);
+        armLift= new JoystickButton(functionStick, 8);
+        armDown = new JoystickButton(functionStick, 7);
     
 
         shoot.toggleWhenPressed(new Take());
@@ -105,20 +108,15 @@ public class OI {
         liftSecondLevel.whenPressed(new Lift(Constants.kSecondLevel));
         liftThirdLevel.whenPressed(new Lift(Constants.kThirdLevel));
         liftFourthLevel.whenPressed(new Lift(Constants.kFourthLevel));
-        
+        liftFifthLevel.whenPressed(new Lift(Constants.kFifthLevel));
+
         solenoidActivate.toggleWhenPressed(new SolenoidActivate());
 
         armLift.whenPressed(new ArmLift());
         armDown.whenPressed(new ArmDown());
 
 
-        
-
-
-        // SmartDashboard Buttons
-        SmartDashboard.putData("Drive", new Drive());
-        SmartDashboard.putData("Lift", new Lift(Constants.kSecondLevel));
-        SmartDashboard.putData("Grab", new Grab());
+    
 
 
     }

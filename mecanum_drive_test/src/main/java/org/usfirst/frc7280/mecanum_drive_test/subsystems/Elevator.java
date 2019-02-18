@@ -16,7 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
+import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
+import org.usfirst.frc7280.mecanum_drive_test.commands.ManualElevator;
 
 /**
  * Add your docs here.
@@ -67,6 +69,7 @@ public class Elevator extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new ManualElevator());
   }
 
   public void liftToPosition(double _position){
@@ -80,28 +83,7 @@ public class Elevator extends Subsystem {
     elevatorPosition = elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx);
     if (_position < elevatorPosition) {
       elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorPeakOutput, Constants.kTimeoutMs);
-      if (_position < -70000){
-        robotMap.setMotorPID(
-          elevatorMaster, 
-          Constants.kElevatorHigherF, 
-          Constants.kElevatorHigherP, 
-          Constants.kElevatorHigherI, 
-          Constants.kElevatorHigherD);
-      } else {
-        robotMap.setMotorPID(
-          elevatorMaster, 
-          Constants.kElevatorF, 
-          Constants.kElevatorP, 
-          Constants.kElevatorI, 
-          Constants.kElevatorD);
-      }
     } else {
-      robotMap.setMotorPID(
-        elevatorMaster, 
-        Constants.kElevatorDownP, 
-        Constants.kElevatorDownI, 
-        Constants.kElevatorDownI, 
-        Constants.kElevatorDownD);
       elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorDownPeakOutput, Constants.kTimeoutMs);
     }
 
@@ -109,7 +91,11 @@ public class Elevator extends Subsystem {
 
     SmartDashboard.putNumber("current position", elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx));
     SmartDashboard.putNumber("Target position", _position);
-    SmartDashboard.putNumber("output", elevatorMaster.getMotorOutputPercent());
+  }
+
+  public void manualRun(double _outPut){
+    elevatorMaster.set(ControlMode.PercentOutput, _outPut);
+
   }
 
   public void stop(){

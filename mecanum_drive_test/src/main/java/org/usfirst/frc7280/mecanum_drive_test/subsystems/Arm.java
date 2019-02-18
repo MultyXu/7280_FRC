@@ -12,7 +12,9 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
+import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
+import org.usfirst.frc7280.mecanum_drive_test.commands.ManualArm;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -46,6 +48,7 @@ public class Arm extends Subsystem {
   }
   @Override
   public void initDefaultCommand() {
+    setDefaultCommand(new ManualArm());
 
   }
 
@@ -58,6 +61,14 @@ public class Arm extends Subsystem {
   public void down(){
     armMotor.configClosedLoopPeakOutput(Constants.kSlotIdx, 0.2, Constants.kTimeoutMs);
     armMotor.set(ControlMode.Position, Constants.kDown);
+
+  }
+
+  public void ManualRun(double _outPut){
+    armMotor.set(ControlMode.PercentOutput, _outPut);
+  }
+  public void stop(){
+    armMotor.set(ControlMode.PercentOutput,0);
 
   }
 

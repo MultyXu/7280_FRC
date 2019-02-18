@@ -86,20 +86,21 @@ public class Base extends Subsystem {
         // double rearLeftSpeed = (yValue - xValue - zValue) * 200;
         // double frontRightSpeed = (yValue - xValue + zValue) * 200;
         // double rearRighttSpeed = (yValue + xValue + zValue) * 200;
+        // setLimit(frontLeftSpeed);
+        // setLimit(rearLeftSpeed);
+        // setLimit(frontRightSpeed);
+        // setLimit(rearRighttSpeed);
         
         // leftFrontMotor.set(ControlMode.Velocity, frontLeftSpeed);
         // leftRearMotor.set(ControlMode.Velocity, rearLeftSpeed);
         // rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
         // rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
 
-        double frontLeftSpeed = (yValue + xValue - zValue)/5 ;
-        double rearLeftSpeed = (yValue - xValue - zValue)/5 ;
-        double frontRightSpeed = (yValue - xValue + zValue)/5 ;
-        double rearRighttSpeed = (yValue + xValue + zValue)/5 ;
-        setLimit(frontLeftSpeed);
-        setLimit(rearLeftSpeed);
-        setLimit(frontRightSpeed);
-        setLimit(rearRighttSpeed);
+        double frontLeftSpeed = (yValue - xValue - zValue)/2 ;
+        double rearLeftSpeed = (yValue + xValue - zValue)/2 ;
+        double frontRightSpeed = (yValue + xValue + zValue)/2 ;
+        double rearRighttSpeed = (yValue - xValue + zValue)/2 ;
+
 
 
         leftFrontMotor.set(ControlMode.PercentOutput, frontLeftSpeed);
