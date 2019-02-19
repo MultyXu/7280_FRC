@@ -7,6 +7,9 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.command_group;
 
+import org.usfirst.frc7280.mecanum_drive_test.Constants;
+import org.usfirst.frc7280.mecanum_drive_test.commands.*;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class GrabPlate1 extends CommandGroup {
@@ -29,7 +32,10 @@ public class GrabPlate1 extends CommandGroup {
     // would require.
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
-    // arm.
+    // arm. 
+    addParallel(new SolenoidIn());
+    addParallel(new Lift(Constants.kFirstLevel));
     
+
   }
 }

@@ -13,6 +13,7 @@ package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 
 
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
+import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
 import org.usfirst.frc7280.mecanum_drive_test.commands.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -35,6 +36,18 @@ public class Base extends Subsystem {
     private TalonSRX rightRearMotor = new TalonSRX(RobotMap.rightRearMotor);
 
     RobotMap robotMap = new RobotMap();
+
+    double frontLeftSpeed;
+    double rearLeftSpeed;
+    double frontRightSpeed;
+    double rearRighttSpeed;
+
+    int targetDistanceX;
+    int targetDistanceY;
+    int targetDistanceZ;
+
+
+
 
     public Base() {
 
@@ -83,10 +96,17 @@ public class Base extends Subsystem {
     public void drive(double yValue, double xValue, double zValue){
         motorMode(NeutralMode.Coast);
 
-        double frontLeftSpeed = (yValue - xValue - zValue) * 1500;
-        double rearLeftSpeed = (yValue + xValue - zValue) * 1500;
-        double frontRightSpeed = (yValue + xValue + zValue) * 1500;
-        double rearRighttSpeed = (yValue - xValue + zValue) * 1500;
+        if (Robot.elevator.targetPosition > -10000){
+            frontLeftSpeed = (yValue - xValue - zValue) * 1500;
+            rearLeftSpeed = (yValue + xValue - zValue) * 1500;
+            frontRightSpeed = (yValue + xValue + zValue) * 1500;
+            rearRighttSpeed = (yValue - xValue + zValue) * 1500;
+        } else {
+            frontLeftSpeed = (yValue - xValue - zValue) * 750;
+            rearLeftSpeed = (yValue + xValue - zValue) * 750;
+            frontRightSpeed = (yValue + xValue + zValue) * 750;
+            rearRighttSpeed = (yValue - xValue + zValue) * 750;
+        }
         // setLimit(frontLeftSpeed);
         // setLimit(rearLeftSpeed);
         // setLimit(frontRightSpeed);
@@ -106,53 +126,44 @@ public class Base extends Subsystem {
 
 
 
-        // leftFrontMotor.set(ControlMode.PercentOutput, frontLeftSpeed);
-        // leftRearMotor.set(ControlMode.PercentOutput, rearLeftSpeed);
-        // rightFrontMotor.set(ControlMode.PercentOutput, frontRightSpeed);
-        // rightRearMotor.set(ControlMode.PercentOutput, rearRighttSpeed);
+        // leftFrontMotor.set(ControlMode.PercentageOutput, frontLeftSpeed);
+        // leftRearMotor.set(ControlMode.PercentageOutput, rearLeftSpeed);
+        // rightFrontMotor.set(ControlMode.PercentageOutput, frontRightSpeed);
+        // rightRearMotor.set(ControlMode.PercentageOutput, rearRighttSpeed);
     }
 
-    public void moveFoward(){
-        leftFrontMotor.set(ControlMode.PercentOutput, 0.2);
-        leftRearMotor.set(ControlMode.PercentOutput, 0.2);
-        rightFrontMotor.set(ControlMode.PercentOutput, 0.2);
-        rightRearMotor.set(ControlMode.PercentOutput, 0.2);
+    public void moveY(int _distance){
+        targetDistanceY = _distance;
+        leftFrontMotor.set(ControlMode.Position, _distance);
+        leftRearMotor.set(ControlMode.Position, _distance);
+        rightFrontMotor.set(ControlMode.Position, _distance);
+        rightRearMotor.set(ControlMode.Position, _distance);
     }
 
-    public void moveBack(){
-        leftFrontMotor.set(ControlMode.PercentOutput, -0.2);
-        leftRearMotor.set(ControlMode.PercentOutput, -0.2);
-        rightFrontMotor.set(ControlMode.PercentOutput, -0.2);
-        rightRearMotor.set(ControlMode.PercentOutput, -0.2);
+
+    public void moveX(int _distance){
+        targetDistanceX = _distance;
+
+        leftFrontMotor.set(ControlMode.Position, _distance);
+        leftRearMotor.set(ControlMode.Position, -_distance);
+        rightFrontMotor.set(ControlMode.Position, -_distance);
+        rightRearMotor.set(ControlMode.Position, _distance);
     }
 
-    public void moveLeft(){
-        leftFrontMotor.set(ControlMode.PercentOutput, 0.2);
-        leftRearMotor.set(ControlMode.PercentOutput, -0.2);
-        rightFrontMotor.set(ControlMode.PercentOutput, -0.2);
-        rightRearMotor.set(ControlMode.PercentOutput, 0.2);
+
+    public void turnZ(int _distance){
+        targetDistanceZ = _distance;
+
+        leftFrontMotor.set(ControlMode.Position, -_distance);
+        leftRearMotor.set(ControlMode.Position, -_distance);
+        rightFrontMotor.set(ControlMode.Position, _distance);
+        rightRearMotor.set(ControlMode.Position, _distance);
     }
 
-    public void moveRight(){
-        leftFrontMotor.set(ControlMode.PercentOutput, -0.2);
-        leftRearMotor.set(ControlMode.PercentOutput, 0.2);
-        rightFrontMotor.set(ControlMode.PercentOutput, 0.2);
-        rightRearMotor.set(ControlMode.PercentOutput, -0.2);
+    public int getCurrentDistance() {
+        return rightFrontMotor.getSelectedSensorPosition();
     }
 
-    public void turnLeft(){
-        leftFrontMotor.set(ControlMode.PercentOutput, -0.2);
-        leftRearMotor.set(ControlMode.PercentOutput, -0.2);
-        rightFrontMotor.set(ControlMode.PercentOutput, 0.2);
-        rightRearMotor.set(ControlMode.PercentOutput, 0.2);
-    }
-
-    public void turnRighet(){
-        leftFrontMotor.set(ControlMode.PercentOutput, 0.2);
-        leftRearMotor.set(ControlMode.PercentOutput, 0.2);
-        rightFrontMotor.set(ControlMode.PercentOutput, -0.2);
-        rightRearMotor.set(ControlMode.PercentOutput, -0.2);
-    }
 
     public void stop(){
         motorMode(NeutralMode.Brake);

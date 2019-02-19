@@ -7,6 +7,7 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.commands;
 
+import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,6 +22,8 @@ public class ElevatorDown extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.elevator.elevatorPosition = Robot.elevator.elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -38,7 +41,6 @@ public class ElevatorDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.stop();
 
   }
 

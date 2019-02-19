@@ -11,18 +11,13 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Lift extends Command {
-
-  int targetPosition;
-
-  public Lift(int _position) {
+public class MoveY extends Command {
+  int targetDistance;
+  public MoveY(int _distance) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.elevator);
-
-    // determine target position
-    targetPosition = _position;
-
+    requires(Robot.base);
+    targetDistance = _distance;
   }
 
   // Called just before this Command runs the first time
@@ -33,14 +28,13 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    Robot.elevator.liftToPosition(targetPosition);   
+    Robot.base.moveY(targetDistance);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Robot.elevator.elevatorPosition == targetPosition && Robot.elevator.elevatorMaster.getSelectedSensorVelocity() == 0);
+    return Robot.base.getCurrentDistance() == targetDistance;
   }
 
   // Called once after isFinished returns true

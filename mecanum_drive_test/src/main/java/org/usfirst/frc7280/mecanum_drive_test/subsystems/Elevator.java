@@ -27,11 +27,12 @@ public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private TalonSRX elevatorMaster = new TalonSRX(RobotMap.elevatorMasterMotor);
+  public TalonSRX elevatorMaster = new TalonSRX(RobotMap.elevatorMasterMotor);
   private TalonSRX elevatorSlave = new TalonSRX(RobotMap.elevatorSlaveMotor);
 
   RobotMap robotMap = new RobotMap();
   public int elevatorPosition;
+  public int targetPosition;
 
   
 
@@ -72,7 +73,7 @@ public class Elevator extends Subsystem {
     // setDefaultCommand(new ManualElevator());
   }
 
-  public void liftToPosition(double _position){
+  public void liftToPosition(int _position){
 
     /* 
     evaluate PID and peak output, separate into three part
@@ -80,6 +81,7 @@ public class Elevator extends Subsystem {
     2. elevator going up to using the second lift 
     3. elevator going down
     */
+    targetPosition = _position;
     elevatorPosition = elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx);
     if (_position < elevatorPosition && _position < -50000) {
       robotMap.setMotorPID(
@@ -88,7 +90,7 @@ public class Elevator extends Subsystem {
         Constants.kElevatorHigherP, 
         Constants.kElevatorHigherI, 
         Constants.kElevatorHigherD);
-      elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorPeakOutput, Constants.kTimeoutMs);
+      elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorHigherPeakOutput, Constants.kTimeoutMs);
     } else if ((_position < elevatorPosition && _position > -50000)) {
       robotMap.setMotorPID(
         elevatorMaster, 
@@ -100,11 +102,11 @@ public class Elevator extends Subsystem {
     } else {
       robotMap.setMotorPID(
         elevatorMaster, 
-        Constants.kElevatorF, 
-        Constants.kElevatorP, 
-        Constants.kElevatorI, 
-        Constants.kElevatorD);
-        elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorPeakOutput, Constants.kTimeoutMs);
+        Constants.kElevatorDownF, 
+        Constants.kElevatorDownP, 
+        Constants.kElevatorDownI, 
+        Constants.kElevatorDownD);
+        elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorDownPeakOutput, Constants.kTimeoutMs);
 
     }
 
@@ -112,11 +114,21 @@ public class Elevator extends Subsystem {
 
     SmartDashboard.putNumber("current position", elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx));
     SmartDashboard.putNumber("Target position", _position);
+    SmartDashboard.putNumber("elevator output", elevatorMaster.getMotorOutputPercent());
+    SmartDashboard.putNumber("elevator current", elevatorMaster.getOutputCurrent());
+
   }
 
   public void elevatorDown(){
-    elevatorPosition = elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx);
-    int targetPosition = elevatorPosition + 13000;
+    int targetPosition = elevatorPosition + 5000;
+    robotMap.setMotorPID(
+        elevatorMaster, 
+        Constants.kElevatorDownF, 
+        Constants.kElevatorDownP, 
+        Constants.kElevatorDownI, 
+        Constants.kElevatorDownD);
+        elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorDownPeakOutput, Constants.kTimeoutMs);
+
     elevatorMaster.set(ControlMode.Position, targetPosition);
 
   }

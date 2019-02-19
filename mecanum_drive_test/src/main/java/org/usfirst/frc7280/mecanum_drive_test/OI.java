@@ -110,6 +110,7 @@ public class OI {
         liftThirdLevel.whenPressed(new Lift(Constants.kThirdLevel));
         liftFourthLevel.whenPressed(new Lift(Constants.kFourthLevel));
         liftFifthLevel.whenPressed(new Lift(Constants.kFifthLevel));
+        elevatorDown.whenPressed(new ElevatorDown());
 
         solenoidActivate.toggleWhenPressed(new SolenoidActivate());
 

@@ -28,13 +28,14 @@ public class Constants {
     public static final double kElevatorDownP = 0.04;
     public static final double kElevatorDownI = 0.0;
     public static final double kElevatorDownD = 0.0;
-    public static final double kElevatorDownPeakOutput = 0.3;
+    public static final double kElevatorDownF = 0.0;
+    public static final double kElevatorDownPeakOutput = 0.25;
 
-    public static final double kElevatorHigherP = 0.06;
+    public static final double kElevatorHigherP = 0.5;
     public static final double kElevatorHigherI = 0.0;
-    public static final double kElevatorHigherD = 0.0;
+    public static final double kElevatorHigherD = 0.03;
     public static final double kElevatorHigherF = 0.0;
-    public static final double kElevatorHigherPeakOutput = 0.8;
+    public static final double kElevatorHigherPeakOutput = 1;
 
 
 
@@ -42,16 +43,16 @@ public class Constants {
 
 
     // Elevator height values
-    public static final double kZeroLevel = 0;
-    public static final double kFirstLevel = -13000;
-    public static final double kSecondLevel = -30000;
-    public static final double kThirdLevel = -60000;
-    public static final double kFourthLevel = -85000;
-    public static final double kFifthLevel = -125000;
+    public static final int kZeroLevel = 0;
+    public static final int kFirstLevel = -13000;
+    public static final int kSecondLevel = -30000;
+    public static final int kThirdLevel = -60000;
+    public static final int kFourthLevel = -90000;
+    public static final int kFifthLevel = -125000;
 
     // Elevator current limit values
-    public static final int kContinueCurrentLimit = 7;
-    public static final int kPeakCurrentLimit = 13;
+    public static final int kContinueCurrentLimit = 12;
+    public static final int kPeakCurrentLimit = 15;
     public static final int kpeakCurrentDuration = 10;
 
     // Intaker motor Speed values

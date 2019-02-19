@@ -41,7 +41,7 @@ public class Arm extends Subsystem {
     Constants.kArmD);
 
     armMotor.enableCurrentLimit(true);
-    armMotor.configContinuousCurrentLimit(Constants.kContinueCurrentLimit, Constants.kTimeoutMs);
+    armMotor.configContinuousCurrentLimit(9, Constants.kTimeoutMs);
     armMotor.configPeakCurrentLimit(Constants.kPeakCurrentLimit, Constants.kTimeoutMs);
     armMotor.configPeakCurrentDuration(Constants.kpeakCurrentDuration, Constants.kTimeoutMs);
 
