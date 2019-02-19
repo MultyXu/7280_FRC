@@ -92,15 +92,16 @@ public class OI {
         liftThirdLevel = new JoystickButton(functionStick, 4);
         liftFourthLevel = new JoystickButton(functionStick, 5);
         liftFifthLevel = new JoystickButton(functionStick, 6);
+        elevatorDown = new JoystickButton(functionStick, 10);
 
         solenoidActivate = new JoystickButton(functionStick, 9);
         
-        armLift= new JoystickButton(functionStick, 8);
-        armDown = new JoystickButton(functionStick, 7);
+        armLift= new JoystickButton(functionStick, 7);
+        armDown = new JoystickButton(functionStick, 8);
     
 
-        shoot.toggleWhenPressed(new Take());
-        grab.toggleWhenPressed(new Grab());
+        shoot.whileHeld(new Take());
+        grab.whileHeld(new Grab());
     
 
         liftZero.whenPressed(new Lift(Constants.kZeroLevel));

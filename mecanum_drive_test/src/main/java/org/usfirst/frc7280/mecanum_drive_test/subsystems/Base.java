@@ -16,6 +16,7 @@ import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
 import org.usfirst.frc7280.mecanum_drive_test.commands.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -82,31 +83,33 @@ public class Base extends Subsystem {
     public void drive(double yValue, double xValue, double zValue){
         motorMode(NeutralMode.Coast);
 
-        // double frontLeftSpeed = (yValue + xValue - zValue) * 200;
-        // double rearLeftSpeed = (yValue - xValue - zValue) * 200;
-        // double frontRightSpeed = (yValue - xValue + zValue) * 200;
-        // double rearRighttSpeed = (yValue + xValue + zValue) * 200;
+        double frontLeftSpeed = (yValue - xValue - zValue) * 1500;
+        double rearLeftSpeed = (yValue + xValue - zValue) * 1500;
+        double frontRightSpeed = (yValue + xValue + zValue) * 1500;
+        double rearRighttSpeed = (yValue - xValue + zValue) * 1500;
         // setLimit(frontLeftSpeed);
         // setLimit(rearLeftSpeed);
         // setLimit(frontRightSpeed);
         // setLimit(rearRighttSpeed);
         
-        // leftFrontMotor.set(ControlMode.Velocity, frontLeftSpeed);
-        // leftRearMotor.set(ControlMode.Velocity, rearLeftSpeed);
-        // rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
-        // rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
+        leftFrontMotor.set(ControlMode.Velocity, frontLeftSpeed);
+        leftRearMotor.set(ControlMode.Velocity, rearLeftSpeed);
+        rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
+        rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
 
-        double frontLeftSpeed = (yValue - xValue - zValue)/2 ;
-        double rearLeftSpeed = (yValue + xValue - zValue)/2 ;
-        double frontRightSpeed = (yValue + xValue + zValue)/2 ;
-        double rearRighttSpeed = (yValue - xValue + zValue)/2 ;
+        SmartDashboard.putNumber("base position", leftFrontMotor.getSelectedSensorPosition());
+
+        // double frontLeftSpeed = (yValue - xValue - zValue)/2 ;
+        // double rearLeftSpeed = (yValue + xValue - zValue)/2 ;
+        // double frontRightSpeed = (yValue + xValue + zValue)/2 ;
+        // double rearRighttSpeed = (yValue - xValue + zValue)/2 ;
 
 
 
-        leftFrontMotor.set(ControlMode.PercentOutput, frontLeftSpeed);
-        leftRearMotor.set(ControlMode.PercentOutput, rearLeftSpeed);
-        rightFrontMotor.set(ControlMode.PercentOutput, frontRightSpeed);
-        rightRearMotor.set(ControlMode.PercentOutput, rearRighttSpeed);
+        // leftFrontMotor.set(ControlMode.PercentOutput, frontLeftSpeed);
+        // leftRearMotor.set(ControlMode.PercentOutput, rearLeftSpeed);
+        // rightFrontMotor.set(ControlMode.PercentOutput, frontRightSpeed);
+        // rightRearMotor.set(ControlMode.PercentOutput, rearRighttSpeed);
     }
 
     public void moveFoward(){

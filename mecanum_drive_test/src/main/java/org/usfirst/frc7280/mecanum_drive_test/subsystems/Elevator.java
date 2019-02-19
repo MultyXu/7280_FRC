@@ -69,7 +69,7 @@ public class Elevator extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new ManualElevator());
+    // setDefaultCommand(new ManualElevator());
   }
 
   public void liftToPosition(double _position){
@@ -81,16 +81,44 @@ public class Elevator extends Subsystem {
     3. elevator going down
     */
     elevatorPosition = elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx);
-    if (_position < elevatorPosition) {
+    if (_position < elevatorPosition && _position < -50000) {
+      robotMap.setMotorPID(
+        elevatorMaster, 
+        Constants.kElevatorHigherF, 
+        Constants.kElevatorHigherP, 
+        Constants.kElevatorHigherI, 
+        Constants.kElevatorHigherD);
+      elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorPeakOutput, Constants.kTimeoutMs);
+    } else if ((_position < elevatorPosition && _position > -50000)) {
+      robotMap.setMotorPID(
+        elevatorMaster, 
+        Constants.kElevatorF, 
+        Constants.kElevatorP, 
+        Constants.kElevatorI, 
+        Constants.kElevatorD);
       elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorPeakOutput, Constants.kTimeoutMs);
     } else {
-      elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorDownPeakOutput, Constants.kTimeoutMs);
+      robotMap.setMotorPID(
+        elevatorMaster, 
+        Constants.kElevatorF, 
+        Constants.kElevatorP, 
+        Constants.kElevatorI, 
+        Constants.kElevatorD);
+        elevatorMaster.configClosedLoopPeakOutput(Constants.kSlotIdx, Constants.kElevatorPeakOutput, Constants.kTimeoutMs);
+
     }
 
     elevatorMaster.set(ControlMode.Position, _position);
 
     SmartDashboard.putNumber("current position", elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx));
     SmartDashboard.putNumber("Target position", _position);
+  }
+
+  public void elevatorDown(){
+    elevatorPosition = elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx);
+    int targetPosition = elevatorPosition + 13000;
+    elevatorMaster.set(ControlMode.Position, targetPosition);
+
   }
 
   public void manualRun(double _outPut){

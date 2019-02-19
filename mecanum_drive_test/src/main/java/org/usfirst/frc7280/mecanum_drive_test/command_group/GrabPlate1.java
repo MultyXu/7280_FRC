@@ -9,11 +9,11 @@ package org.usfirst.frc7280.mecanum_drive_test.command_group;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PutPlate extends CommandGroup {
+public class GrabPlate1 extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public PutPlate() {
+  public GrabPlate1() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -30,5 +30,6 @@ public class PutPlate extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
+    
   }
 }

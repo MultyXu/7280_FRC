@@ -28,7 +28,7 @@ public class Constants {
     public static final double kElevatorDownP = 0.04;
     public static final double kElevatorDownI = 0.0;
     public static final double kElevatorDownD = 0.0;
-    public static final double kElevatorDownPeakOutput = 0.2;
+    public static final double kElevatorDownPeakOutput = 0.3;
 
     public static final double kElevatorHigherP = 0.06;
     public static final double kElevatorHigherI = 0.0;
@@ -44,9 +44,9 @@ public class Constants {
     // Elevator height values
     public static final double kZeroLevel = 0;
     public static final double kFirstLevel = -13000;
-    public static final double kSecondLevel = -60000;
-    public static final double kThirdLevel = -90000;
-    public static final double kFourthLevel = -120000;
+    public static final double kSecondLevel = -30000;
+    public static final double kThirdLevel = -60000;
+    public static final double kFourthLevel = -85000;
     public static final double kFifthLevel = -125000;
 
     // Elevator current limit values
