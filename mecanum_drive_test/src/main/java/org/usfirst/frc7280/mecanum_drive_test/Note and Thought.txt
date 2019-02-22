@@ -1,0 +1,6 @@
+
+For the method to end some commands,
+just put nothing in the method of end() and set time out 
+very small 
+
+when elevator gets its position, stop the command 

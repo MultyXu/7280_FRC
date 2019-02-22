@@ -17,25 +17,34 @@ public class GrabPlate1 extends CommandGroup {
    * Add your docs here.
    */
   public GrabPlate1() {
-    // Add Commands here:
-    // e.g. addSequential(new Command1());
-    // addSequential(new Command2());
-    // these will run in order.
+    /* 
+    0.Arm down to position 
+    1. move cylinder out
+    2. lift up elevator to grab plate height 
+    3. adjust the robot in Z axis 
+    4. move X and move Y to touch the plate 
+    5. lift up the arm 
+    6. move back 
+    7. move cylinder in 
 
-    // To run multiple commands at the same time,
-    // use addParallel()
-    // e.g. addParallel(new Command1());
-    // addSequential(new Command2());
-    // Command1 and Command2 will run in parallel.
+    0.1.2.3.
+    4.
+    5.6.7.
+    */
 
-    // A command group will require all of the subsystems that each member
-    // would require.
-    // e.g. if Command1 requires chassis, and Command2 requires arm,
-    // a CommandGroup containing them would require both the chassis and the
-    // arm. 
-    addParallel(new SolenoidIn());
+    addParallel(new ArmDown());
+    addParallel(new SolenoidOut());
     addParallel(new Lift(Constants.kFirstLevel));
-    
+    addSequential(new MoveZ(200));
+
+    addParallel(new MoveX(200));
+    addSequential(new MoveY(200));
+
+    addParallel(new ArmLift());
+    addParallel(new Lift(Constants.kZeroLevel));
+    addSequential(new MoveY(-200));
+
+    addParallel(new SolenoidIn());
 
   }
 }
