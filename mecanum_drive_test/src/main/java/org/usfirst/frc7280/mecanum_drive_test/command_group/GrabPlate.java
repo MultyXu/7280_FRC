@@ -12,11 +12,11 @@ import org.usfirst.frc7280.mecanum_drive_test.commands.*;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class GrabPlate1 extends CommandGroup {
+public class GrabPlate extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public GrabPlate1() {
+  public GrabPlate() {
     /* 
     0.Arm down to position 
     1. move cylinder out
