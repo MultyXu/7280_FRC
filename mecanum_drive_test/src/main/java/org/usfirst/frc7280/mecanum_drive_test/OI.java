@@ -85,6 +85,9 @@ public class OI {
     
         boolean setManual = Robot.judge.manualModeOn;
 
+        functionStick = new Joystick(1);
+        motionStick = new Joystick(0);
+
         liftZero = new JoystickButton(functionStick, 1);
         liftFirstLevel = new JoystickButton(functionStick, 2);
         liftSecondLevel = new JoystickButton(functionStick, 3);
@@ -100,9 +103,7 @@ public class OI {
         liftFifthLevel.whenPressed(new Lift(Constants.kFifthLevel));
 
         if (setManual){
-        functionStick = new Joystick(1);
-        motionStick = new Joystick(0);
-        
+
         shoot = new JoystickButton(motionStick, 7);
         grab = new JoystickButton(motionStick, 8);
 
@@ -131,8 +132,6 @@ public class OI {
             putBall = new JoystickButton(functionStick, 11);
 
             grabPlate.whenPressed(new GrabPlate());
-            
-
         }
 
     

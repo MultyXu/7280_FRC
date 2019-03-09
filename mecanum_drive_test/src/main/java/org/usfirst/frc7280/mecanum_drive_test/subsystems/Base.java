@@ -178,15 +178,5 @@ public class Base extends Subsystem {
         rightRearMotor.setNeutralMode(mode);
     }
 
-    private void setLimit(double _speed){
-        if(_speed > 200) {
-            _speed = 200;
-        } if(_speed < -200){
-            _speed = -200;
-        } else {
-            _speed = _speed;
-        }
-    }
-
 }
 
