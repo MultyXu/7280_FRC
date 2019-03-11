@@ -12,11 +12,11 @@ import org.usfirst.frc7280.mecanum_drive_test.commands.*;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PutPlate extends CommandGroup {
+public class PutBall extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public PutPlate() {
+  public PutBall() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -34,30 +34,13 @@ public class PutPlate extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    /*
-    1. move z to adjust position 
-    2. move x and y to adjust position 
-    3. open cylinder 
-    4. elevator down a little 
-    5. move back 
-    6. go to original position 
-    
-    1.
-    3.2.
-    4.5.
-    6.
-
-    */
-
     addSequential(new MoveZ(200));
 
     addParallel(new MoveX(200));
     addParallel(new MoveY(200));
-    addSequential(new SolenoidOut());
+    addSequential(new ShootBall());
 
-    addParallel(new ElevatorDown());
-    addSequential(new MoveY(-200));
-
+    addParallel(new MoveY(-200));
     addParallel(new Lift(Constants.kZeroLevel));
     addParallel(new ArmLift());
 

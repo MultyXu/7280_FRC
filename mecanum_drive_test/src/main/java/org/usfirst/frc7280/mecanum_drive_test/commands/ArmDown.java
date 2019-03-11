@@ -7,6 +7,7 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.commands;
 
+import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,12 +33,13 @@ public class ArmDown extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return (Math.abs(Robot.arm.armPosition - Constants.kDown) < 300 && Robot.arm.armSpeed == 0);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.arm.down();
   }
 
   // Called when another command which requires one or more of the same

@@ -34,7 +34,7 @@ public class MoveX extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.base.getCurrentDistance() == targetDistance;
+    return Math.abs(Robot.base.getCurrentDistance()-targetDistance) < 500;
   }
 
   // Called once after isFinished returns true

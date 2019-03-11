@@ -70,7 +70,7 @@ public class Elevator extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    // setDefaultCommand(new ManualElevator());
+    setDefaultCommand(new ManualElevator());
   }
 
   public void liftToPosition(int _position){
@@ -120,7 +120,7 @@ public class Elevator extends Subsystem {
   }
 
   public void elevatorDown(){
-    int targetPosition = elevatorPosition + 5000;
+    targetPosition = elevatorPosition + 5000;
     robotMap.setMotorPID(
         elevatorMaster, 
         Constants.kElevatorDownF, 

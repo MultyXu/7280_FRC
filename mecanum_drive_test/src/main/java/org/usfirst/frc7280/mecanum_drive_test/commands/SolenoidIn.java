@@ -33,11 +33,14 @@ public class SolenoidIn extends Command {
   @Override
   protected boolean isFinished() {
     return false;
+    //return true;
+
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    //Robot.intaker.cylinderDown();
   }
 
   // Called when another command which requires one or more of the same

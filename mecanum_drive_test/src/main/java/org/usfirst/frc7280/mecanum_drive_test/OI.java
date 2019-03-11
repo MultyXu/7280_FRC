@@ -102,18 +102,20 @@ public class OI {
         liftFourthLevel.whenPressed(new Lift(Constants.kFourthLevel));
         liftFifthLevel.whenPressed(new Lift(Constants.kFifthLevel));
 
-        if (setManual){
-
         shoot = new JoystickButton(motionStick, 7);
         grab = new JoystickButton(motionStick, 8);
+
+        armLift= new JoystickButton(functionStick, 7);
+        armDown = new JoystickButton(functionStick, 8);
+        armLift.whenPressed(new ArmLift());
+        armDown.whenPressed(new ArmDown());
+
+        if (setManual){
 
         elevatorDown = new JoystickButton(functionStick, 10);
 
         solenoidActivate = new JoystickButton(functionStick, 9);
         
-        armLift= new JoystickButton(functionStick, 7);
-        armDown = new JoystickButton(functionStick, 8);
-    
 
         shoot.whileHeld(new Take());
         grab.whileHeld(new Grab());
@@ -121,15 +123,12 @@ public class OI {
         elevatorDown.whenPressed(new ElevatorDown());
 
         solenoidActivate.toggleWhenPressed(new SolenoidActivate());
-
-        armLift.whenPressed(new ArmLift());
-        armDown.whenPressed(new ArmDown());
-        } else{
+        } else{ 
             //set auto mode here to run command group
             grabPlate = new JoystickButton(functionStick, 7);
             putPlate = new JoystickButton(functionStick, 8);
-            grabBall = new JoystickButton(functionStick, 10);
-            putBall = new JoystickButton(functionStick, 11);
+            grabBall = new JoystickButton(functionStick, 9);
+            putBall = new JoystickButton(functionStick, 10);
 
             grabPlate.whenPressed(new GrabPlate());
         }

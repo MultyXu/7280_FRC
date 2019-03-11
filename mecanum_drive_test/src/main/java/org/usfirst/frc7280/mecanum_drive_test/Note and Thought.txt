@@ -4,3 +4,15 @@ just put nothing in the method of end() and set time out
 very small 
 
 when elevator gets its position, stop the command 
+
+1. complete the command group
+    抓盘子
+    方盘子
+    抓球
+    放球
+2. add 转90度的程序
+3. 判断距离和角度的程序
+4. 想一想传感器的问题
+5. command 中 end（）程序 
+6. xrs 的视觉程序
+7. 电梯到某个地方， 地盘速度，电流（测试）

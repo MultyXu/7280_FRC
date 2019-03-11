@@ -35,7 +35,13 @@ public class ElevatorDown extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    /*
+    from elevator get the elevator position and target postition and 
+    evaluate their differece.
+    if the difference is less than 300 and the motor speed gets form
+    elevator class is equal to 0, we end the command. 
+    */
+    return (Math.abs(Robot.elevator.elevatorPosition - Robot.elevator.targetPosition) < 300 && Robot.elevator.elevatorMaster.getSelectedSensorVelocity() == 0);
   }
 
   // Called once after isFinished returns true

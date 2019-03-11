@@ -7,6 +7,8 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 
+import java.awt.geom.Ellipse2D.Double;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -26,6 +28,9 @@ public class Arm extends Subsystem {
   // here. Call these from Commands.
   private TalonSRX armMotor = new TalonSRX(RobotMap.armMotor);
   private RobotMap robotMap = new RobotMap();
+
+  public int armPosition;
+  public double armSpeed;
   
   public Arm() {
 
@@ -46,24 +51,27 @@ public class Arm extends Subsystem {
     armMotor.configPeakCurrentDuration(Constants.kpeakCurrentDuration, Constants.kTimeoutMs);
 
   }
+  
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new ManualArm());
-
   }
 
   public void lift(){
     armMotor.configClosedLoopPeakOutput(Constants.kSlotIdx, 1, Constants.kTimeoutMs);
     armMotor.set(ControlMode.Position, Constants.kLift);
-
+    armPosition = armMotor.getSelectedSensorPosition();
+    armSpeed = armMotor.getSelectedSensorVelocity();
   }
 
   public void down(){
     armMotor.configClosedLoopPeakOutput(Constants.kSlotIdx, 0.2, Constants.kTimeoutMs);
     armMotor.set(ControlMode.Position, Constants.kDown);
-
+    armPosition = armMotor.getSelectedSensorPosition();
+    armSpeed = armMotor.getSelectedSensorVelocity();
   }
 
+  // manual control method for arms, control it with right stick
   public void ManualRun(double _outPut){
     armMotor.set(ControlMode.PercentOutput, _outPut);
   }

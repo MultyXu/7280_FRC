@@ -34,13 +34,13 @@ public class Lift extends Command {
   @Override
   protected void execute() {
     
-    Robot.elevator.liftToPosition(targetPosition);   
+    Robot.elevator.liftToPosition(targetPosition);  
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Robot.elevator.elevatorPosition == targetPosition && Robot.elevator.elevatorMaster.getSelectedSensorVelocity() == 0);
+    return (Math.abs(Robot.elevator.elevatorPosition - targetPosition) < 300 && Robot.elevator.elevatorMaster.getSelectedSensorVelocity() == 0);
   }
 
   // Called once after isFinished returns true
