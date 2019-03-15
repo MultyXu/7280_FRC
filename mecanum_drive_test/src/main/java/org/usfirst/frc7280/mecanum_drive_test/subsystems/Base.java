@@ -90,6 +90,7 @@ public class Base extends Subsystem {
 
     public void drive(double yValue, double xValue, double zValue){
         motorMode(NeutralMode.Coast);
+        configVelocityPID();
 
         if (Robot.elevator.targetPosition > -10000){
             frontLeftSpeed = (yValue - xValue - zValue) * 1500;
@@ -113,6 +114,9 @@ public class Base extends Subsystem {
         rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
 
         SmartDashboard.putNumber("base position", leftFrontMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("set base speed", frontLeftSpeed);
+        SmartDashboard.putNumber("base speed", leftFrontMotor.getSelectedSensorVelocity());
+        SmartDashboard.putNumber("output", leftFrontMotor.getMotorOutputPercent());
 
         // double frontLeftSpeed = (yValue - xValue - zValue)/2 ;
         // double rearLeftSpeed = (yValue + xValue - zValue)/2 ;
@@ -129,6 +133,8 @@ public class Base extends Subsystem {
 
     public void moveY(int _distance){
         targetDistanceY = _distance;
+        motorMode(NeutralMode.Brake);
+
         leftFrontMotor.set(ControlMode.Position, _distance);
         leftRearMotor.set(ControlMode.Position, _distance);
         rightFrontMotor.set(ControlMode.Position, _distance);
@@ -138,6 +144,7 @@ public class Base extends Subsystem {
 
     public void moveX(int _distance){
         targetDistanceX = _distance;
+        motorMode(NeutralMode.Brake);
 
         leftFrontMotor.set(ControlMode.Position, _distance);
         leftRearMotor.set(ControlMode.Position, -_distance);
@@ -149,7 +156,7 @@ public class Base extends Subsystem {
     // turn the robot, 363unit/degree
     public void turnZ(int _distance){
         targetDistanceZ = _distance;
-
+        motorMode(NeutralMode.Brake);
         leftFrontMotor.set(ControlMode.Position, -_distance);
         leftRearMotor.set(ControlMode.Position, -_distance);
         rightFrontMotor.set(ControlMode.Position, _distance);
@@ -187,13 +194,25 @@ public class Base extends Subsystem {
         robotMap.setMotorPID(leftRearMotor, 0.197, 0, 0, 0);
         robotMap.setMotorPID(rightFrontMotor, 0.197, 0, 0, 0);
         robotMap.setMotorPID(rightRearMotor, 0.197, 0, 0, 0);
+
+        leftFrontMotor.configClosedLoopPeakOutput(0, 1);
+        leftRearMotor.configClosedLoopPeakOutput(0, 1);
+        rightFrontMotor.configClosedLoopPeakOutput(0, 1);
+        rightFrontMotor.configClosedLoopPeakOutput(0, 1);
     }
 
     public void configPositionPID(){
-        robotMap.setMotorPID(leftFrontMotor, 0.197, 0.1, 0, 0);
-        robotMap.setMotorPID(leftRearMotor, 0.197, 0.1, 0, 0);
-        robotMap.setMotorPID(rightFrontMotor, 0.197, 0.1, 0, 0);
-        robotMap.setMotorPID(rightRearMotor, 0.197, 0.1, 0, 0);
+        robotMap.setMotorPID(leftFrontMotor, 0, 0.1, 0, 0);
+        robotMap.setMotorPID(leftRearMotor, 0, 0.1, 0, 0);
+        robotMap.setMotorPID(rightFrontMotor, 0, 0.1, 0, 0);
+        robotMap.setMotorPID(rightRearMotor, 0, 0.1, 0, 0);
+
+        leftFrontMotor.configClosedLoopPeakOutput(0, 0.5);
+        leftRearMotor.configClosedLoopPeakOutput(0, 0.5);
+        rightFrontMotor.configClosedLoopPeakOutput(0, 0.5);
+        rightFrontMotor.configClosedLoopPeakOutput(0, 0.5);
+
+
     }
 
 }
