@@ -93,10 +93,10 @@ public class Base extends Subsystem {
         configVelocityPID();
 
         if (Robot.elevator.targetPosition > -10000){
-            frontLeftSpeed = (yValue - xValue - zValue) * 1500;
-            rearLeftSpeed = (yValue + xValue - zValue) * 1500;
-            frontRightSpeed = (yValue + xValue + zValue) * 1500;
-            rearRighttSpeed = (yValue - xValue + zValue) * 1500;
+            frontLeftSpeed = (yValue - xValue - zValue) * 1500 * 2;
+            rearLeftSpeed = (yValue + xValue - zValue) * 1500 * 2;
+            frontRightSpeed = (yValue + xValue + zValue) * 1500 * 2;
+            rearRighttSpeed = (yValue - xValue + zValue) * 1500 * 2;
         } else {
             frontLeftSpeed = (yValue - xValue - zValue) * 750;
             rearLeftSpeed = (yValue + xValue - zValue) * 750;
@@ -202,10 +202,10 @@ public class Base extends Subsystem {
     }
 
     public void configPositionPID(){
-        robotMap.setMotorPID(leftFrontMotor, 0, 0.1, 0, 0);
-        robotMap.setMotorPID(leftRearMotor, 0, 0.1, 0, 0);
-        robotMap.setMotorPID(rightFrontMotor, 0, 0.1, 0, 0);
-        robotMap.setMotorPID(rightRearMotor, 0, 0.1, 0, 0);
+        robotMap.setMotorPID(leftFrontMotor, 0, 0.025, 0, 0);
+        robotMap.setMotorPID(leftRearMotor, 0, 0.025, 0, 0);
+        robotMap.setMotorPID(rightFrontMotor, 0, 0.025, 0, 0);
+        robotMap.setMotorPID(rightRearMotor, 0, 0.025, 0, 0);
 
         leftFrontMotor.configClosedLoopPeakOutput(0, 0.5);
         leftRearMotor.configClosedLoopPeakOutput(0, 0.5);
