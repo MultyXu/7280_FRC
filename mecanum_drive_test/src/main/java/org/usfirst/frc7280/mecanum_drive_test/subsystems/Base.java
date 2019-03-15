@@ -47,8 +47,6 @@ public class Base extends Subsystem {
     int targetDistanceZ;
 
 
-
-
     public Base() {
 
         robotMap.TalonSRXInit(leftFrontMotor, Constants.kBasePeakOutput);
@@ -56,10 +54,7 @@ public class Base extends Subsystem {
         robotMap.TalonSRXInit(rightFrontMotor, Constants.kBasePeakOutput);
         robotMap.TalonSRXInit(rightRearMotor, Constants.kBasePeakOutput);
 
-        robotMap.setMotorPID(leftFrontMotor, 0.197, 0, 0, 0);
-        robotMap.setMotorPID(leftRearMotor, 0.197, 0, 0, 0);
-        robotMap.setMotorPID(rightFrontMotor, 0.197, 0, 0, 0);
-        robotMap.setMotorPID(rightRearMotor, 0.197, 0, 0, 0);
+        configVelocityPID();
 
         leftFrontMotor.setInverted(true);
         leftRearMotor.setInverted(true);
@@ -185,6 +180,20 @@ public class Base extends Subsystem {
         leftRearMotor.setNeutralMode(mode);
         rightFrontMotor.setNeutralMode(mode);
         rightRearMotor.setNeutralMode(mode);
+    }
+
+    public void configVelocityPID(){
+        robotMap.setMotorPID(leftFrontMotor, 0.197, 0, 0, 0);
+        robotMap.setMotorPID(leftRearMotor, 0.197, 0, 0, 0);
+        robotMap.setMotorPID(rightFrontMotor, 0.197, 0, 0, 0);
+        robotMap.setMotorPID(rightRearMotor, 0.197, 0, 0, 0);
+    }
+
+    public void configPositionPID(){
+        robotMap.setMotorPID(leftFrontMotor, 0.197, 0.1, 0, 0);
+        robotMap.setMotorPID(leftRearMotor, 0.197, 0.1, 0, 0);
+        robotMap.setMotorPID(rightFrontMotor, 0.197, 0.1, 0, 0);
+        robotMap.setMotorPID(rightRearMotor, 0.197, 0.1, 0, 0);
     }
 
 }

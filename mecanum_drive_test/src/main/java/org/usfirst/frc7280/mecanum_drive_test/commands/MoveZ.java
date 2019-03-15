@@ -24,6 +24,7 @@ public class MoveZ extends Command {
   @Override
   protected void initialize() {
     Robot.base.zeroSensorPostition();
+    Robot.base.configPositionPID();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -48,5 +49,6 @@ public class MoveZ extends Command {
   @Override
   protected void interrupted() {
     end();
+    Robot.base.configVelocityPID();
   }
 }
