@@ -194,11 +194,6 @@ public class Base extends Subsystem {
         robotMap.setMotorPID(leftRearMotor, 0.197, 0, 0, 0);
         robotMap.setMotorPID(rightFrontMotor, 0.197, 0, 0, 0);
         robotMap.setMotorPID(rightRearMotor, 0.197, 0, 0, 0);
-
-        leftFrontMotor.configClosedLoopPeakOutput(0, 1);
-        leftRearMotor.configClosedLoopPeakOutput(0, 1);
-        rightFrontMotor.configClosedLoopPeakOutput(0, 1);
-        rightFrontMotor.configClosedLoopPeakOutput(0, 1);
     }
 
     public void configPositionPID(){
