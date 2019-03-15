@@ -56,7 +56,7 @@ public class Base extends Subsystem {
 
         configVelocityPID();
 
-        leftFrontMotor.setInverted(true);
+        leftFrontMotor.setInverted(false);
         leftRearMotor.setInverted(true);
 
 
