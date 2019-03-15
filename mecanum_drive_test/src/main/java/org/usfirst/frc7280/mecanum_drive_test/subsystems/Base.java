@@ -56,8 +56,10 @@ public class Base extends Subsystem {
 
         configVelocityPID();
 
-        leftFrontMotor.setInverted(false);
+        // modified
+        leftFrontMotor.setInverted(true);
         leftRearMotor.setInverted(true);
+        //leftFrontMotor.setSensorPhase(false);
 
 
     }
@@ -165,6 +167,11 @@ public class Base extends Subsystem {
         leftRearMotor.set(ControlMode.Position, -_distance);
         rightFrontMotor.set(ControlMode.Position, _distance);
         rightRearMotor.set(ControlMode.Position, _distance);
+
+        SmartDashboard.putNumber("LF position", leftFrontMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("LR position", leftRearMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("RF position", rightFrontMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("RR position", rightRearMotor.getSelectedSensorPosition());
     }
 
     public int getCurrentDistance() {
@@ -202,19 +209,19 @@ public class Base extends Subsystem {
         leftFrontMotor.configClosedLoopPeakOutput(0, 1);
         leftRearMotor.configClosedLoopPeakOutput(0, 1);
         rightFrontMotor.configClosedLoopPeakOutput(0, 1);
-        rightFrontMotor.configClosedLoopPeakOutput(0, 1);
+        rightRearMotor.configClosedLoopPeakOutput(0, 1);
     }
 
     public void configPositionPID(){
-        robotMap.setMotorPID(leftFrontMotor, 0, 0.025, 0, 0);
-        robotMap.setMotorPID(leftRearMotor, 0, 0.025, 0, 0);
-        robotMap.setMotorPID(rightFrontMotor, 0, 0.025, 0, 0);
-        robotMap.setMotorPID(rightRearMotor, 0, 0.025, 0, 0);
+        robotMap.setMotorPID(leftFrontMotor, 0, 0.05, 0, 0.5);
+        robotMap.setMotorPID(leftRearMotor, 0, 0.02, 0, 0.2);
+        robotMap.setMotorPID(rightFrontMotor, 0, 0.1, 0, 1);
+        robotMap.setMotorPID(rightRearMotor, 0, 0.1, 0, 1);
 
         leftFrontMotor.configClosedLoopPeakOutput(0, 0.5);
         leftRearMotor.configClosedLoopPeakOutput(0, 0.5);
         rightFrontMotor.configClosedLoopPeakOutput(0, 0.5);
-        rightFrontMotor.configClosedLoopPeakOutput(0, 0.5);
+        rightRearMotor.configClosedLoopPeakOutput(0, 0.5);
     }
 
 }

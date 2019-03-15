@@ -16,10 +16,10 @@ public class Constants {
     public static final double kBasePeakOutput = 0.8;
 
     // Base turning values, 362unit/degree, turn +- 45/90 degree left is positive and right is negative
-    public static final int leftTurn45 = 16331;
-    public static final int rightTurn45 = -16331;
-    public static final int leftTurn90 = 32662;
-    public static final int rightTurn90 = -32662;
+    public static final int leftTurn45 = -16331;
+    public static final int rightTurn45 = 16331;
+    public static final int leftTurn90 = -32662;
+    public static final int rightTurn90 = 32662;
 
 
 
