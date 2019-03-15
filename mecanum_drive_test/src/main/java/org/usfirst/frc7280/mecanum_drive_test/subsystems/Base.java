@@ -93,10 +93,10 @@ public class Base extends Subsystem {
         configVelocityPID();
 
         if (Robot.elevator.targetPosition > -10000){
-            frontLeftSpeed = (yValue - xValue - zValue) * 1500;
-            rearLeftSpeed = (yValue + xValue - zValue) * 1500;
-            frontRightSpeed = (yValue + xValue + zValue) * 1500;
-            rearRighttSpeed = (yValue - xValue + zValue) * 1500;
+            frontLeftSpeed = (yValue - xValue - zValue) * 1500 * 2;
+            rearLeftSpeed = (yValue + xValue - zValue) * 1500 * 2;
+            frontRightSpeed = (yValue + xValue + zValue) * 1500 * 2;
+            rearRighttSpeed = (yValue - xValue + zValue) * 1500 * 2;
         } else {
             frontLeftSpeed = (yValue - xValue - zValue) * 750;
             rearLeftSpeed = (yValue + xValue - zValue) * 750;
