@@ -59,6 +59,7 @@ public class OI {
     public JoystickButton shoot;
     public JoystickButton grab;
 
+    // elevator level button
     public JoystickButton liftZero;
     public JoystickButton liftFirstLevel;
     public JoystickButton liftSecondLevel;
@@ -78,6 +79,12 @@ public class OI {
     public JoystickButton grabBall;
     public JoystickButton putBall;
 
+    //turning button
+    public JoystickButton leftTurn45;
+    public JoystickButton leftTurn90;
+    public JoystickButton rightTurn45;
+    public JoystickButton rightTurn90;
+
 
     
 
@@ -85,9 +92,11 @@ public class OI {
     
         boolean setManual = Robot.judge.manualModeOn;
 
+        // config joystck port
         functionStick = new Joystick(1);
         motionStick = new Joystick(0);
 
+        // Config elevator button
         liftZero = new JoystickButton(functionStick, 1);
         liftFirstLevel = new JoystickButton(functionStick, 2);
         liftSecondLevel = new JoystickButton(functionStick, 3);
@@ -95,6 +104,7 @@ public class OI {
         liftFourthLevel = new JoystickButton(functionStick, 5);
         liftFifthLevel = new JoystickButton(functionStick, 6);
 
+        // asociate elevaor button to function 
         liftZero.whenPressed(new Lift(Constants.kZeroLevel));
         liftFirstLevel.whenPressed(new Lift(Constants.kFirstLevel));
         liftSecondLevel.whenPressed(new Lift(Constants.kSecondLevel));
@@ -102,27 +112,37 @@ public class OI {
         liftFourthLevel.whenPressed(new Lift(Constants.kFourthLevel));
         liftFifthLevel.whenPressed(new Lift(Constants.kFifthLevel));
 
+        // manually grab and shoot the ball, config button
         shoot = new JoystickButton(motionStick, 7);
         grab = new JoystickButton(motionStick, 8);
+
+        shoot.whileHeld(new Take());
+        grab.whileHeld(new Grab());
 
         armLift= new JoystickButton(functionStick, 7);
         armDown = new JoystickButton(functionStick, 8);
         armLift.whenPressed(new ArmLift());
         armDown.whenPressed(new ArmDown());
 
+        leftTurn45 = new JoystickButton(motionStick, 1);
+        leftTurn90 = new JoystickButton(motionStick, 2);
+        rightTurn45 = new JoystickButton(motionStick, 3);
+        rightTurn90 = new JoystickButton(motionStick, 4);
+
+        leftTurn45.whenPressed(new MoveZ(Constants.leftTurn45));
+        leftTurn90.whenPressed(new MoveZ(Constants.leftTurn90));
+        rightTurn45.whenPressed(new MoveZ(Constants.rightTurn45));
+        rightTurn90.whenPressed(new MoveZ(Constants.rightTurn90));
+
+
         if (setManual){
 
         elevatorDown = new JoystickButton(functionStick, 10);
-
-        solenoidActivate = new JoystickButton(functionStick, 9);
-        
-
-        shoot.whileHeld(new Take());
-        grab.whileHeld(new Grab());
-    
         elevatorDown.whenPressed(new ElevatorDown());
 
+        solenoidActivate = new JoystickButton(functionStick, 9);
         solenoidActivate.toggleWhenPressed(new SolenoidActivate());
+
         } else{ 
             //set auto mode here to run command group
             grabPlate = new JoystickButton(functionStick, 7);

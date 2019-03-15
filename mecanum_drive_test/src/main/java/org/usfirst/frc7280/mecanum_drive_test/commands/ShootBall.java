@@ -7,7 +7,6 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.commands;
 
-import org.junit.rules.Timeout;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;

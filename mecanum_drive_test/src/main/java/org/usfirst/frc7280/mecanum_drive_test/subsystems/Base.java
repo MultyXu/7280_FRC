@@ -56,10 +56,10 @@ public class Base extends Subsystem {
         robotMap.TalonSRXInit(rightFrontMotor, Constants.kBasePeakOutput);
         robotMap.TalonSRXInit(rightRearMotor, Constants.kBasePeakOutput);
 
-        robotMap.setMotorPID(leftFrontMotor, 0.5, 0, 0, 0);
-        robotMap.setMotorPID(leftRearMotor, 0.5, 0, 0, 0);
-        robotMap.setMotorPID(rightFrontMotor, 0.5, 0, 0, 0);
-        robotMap.setMotorPID(rightRearMotor, 0.5, 0, 0, 0);
+        robotMap.setMotorPID(leftFrontMotor, 0.197, 0, 0, 0);
+        robotMap.setMotorPID(leftRearMotor, 0.197, 0, 0, 0);
+        robotMap.setMotorPID(rightFrontMotor, 0.197, 0, 0, 0);
+        robotMap.setMotorPID(rightRearMotor, 0.197, 0, 0, 0);
 
         leftFrontMotor.setInverted(true);
         leftRearMotor.setInverted(true);
@@ -151,6 +151,7 @@ public class Base extends Subsystem {
     }
 
 
+    // turn the robot, 363unit/degree
     public void turnZ(int _distance){
         targetDistanceZ = _distance;
 
@@ -162,6 +163,14 @@ public class Base extends Subsystem {
 
     public int getCurrentDistance() {
         return rightFrontMotor.getSelectedSensorPosition();
+    }
+
+    //function that set the encoder position to zero
+    public void zeroSensorPostition(){
+        leftFrontMotor.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+        leftRearMotor.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+        rightFrontMotor.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+        rightRearMotor.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
 

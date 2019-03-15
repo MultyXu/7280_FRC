@@ -15,6 +15,13 @@ public class Constants {
     // Base PID
     public static final double kBasePeakOutput = 0.8;
 
+    // Base turning values, 362unit/degree, turn +- 45/90 degree left is positive and right is negative
+    public static final int leftTurn45 = 16331;
+    public static final int rightTurn45 = -16331;
+    public static final int leftTurn90 = 32662;
+    public static final int rightTurn90 = -32662;
+
+
 
     // Base speed 
     
@@ -37,11 +44,6 @@ public class Constants {
     public static final double kElevatorHigherF = 0.0;
     public static final double kElevatorHigherPeakOutput = 1;
 
-
-
-
-
-
     // Elevator height values
     public static final int kZeroLevel = 0;
     public static final int kFirstLevel = -13000;
@@ -55,10 +57,12 @@ public class Constants {
     public static final int kPeakCurrentLimit = 15;
     public static final int kpeakCurrentDuration = 10;
 
+
     // Intaker motor Speed values
     public static final double takeSpeed = 0.95;
     public static final double shootSpeed = -0.95;
     
+
     // Arm PID values
     public static final double kArmP = 0.09;
     public static final double kArmI = 0;
