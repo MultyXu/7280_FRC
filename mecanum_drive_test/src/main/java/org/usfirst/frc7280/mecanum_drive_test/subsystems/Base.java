@@ -113,7 +113,11 @@ public class Base extends Subsystem {
         rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
         rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
 
-        SmartDashboard.putNumber("base position", leftFrontMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("LF position", leftFrontMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("LR position", leftRearMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("RF position", rightFrontMotor.getSelectedSensorPosition());
+        SmartDashboard.putNumber("RR position", rightRearMotor.getSelectedSensorPosition());
+        
         SmartDashboard.putNumber("set base speed", frontLeftSpeed);
         SmartDashboard.putNumber("base speed", leftFrontMotor.getSelectedSensorVelocity());
         SmartDashboard.putNumber("output", leftFrontMotor.getMotorOutputPercent());
