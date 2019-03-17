@@ -7,34 +7,36 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 
-import org.usfirst.frc7280.mecanum_drive_test.Robot;
-import org.usfirst.frc7280.mecanum_drive_test.commands.Judging;
+import org.usfirst.frc7280.mecanum_drive_test.commands.GetTableData;
 
-import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * Add your docs here.
  */
-public class Judge extends Subsystem {
+public class Networktable extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  NetworkTable table = inst.getTable("position");
+  NetworkTableEntry yEntry = inst.getEntry("Y");
 
-  public boolean manualModeOn = false;
+  public double position;
+
+  public Networktable(){
+    inst.startClientTeam(7280);
+    inst.startDSClient();
+  }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new Judging());
+    setDefaultCommand(new GetTableData());
   }
 
-  public void setManualMode(){
-    if (Robot.oi.functionStick.getPOV() == 0){
-      manualModeOn = true;
-    } else if (Robot.oi.functionStick.getPOV() == 180){
-      manualModeOn = false;
-    }
-    SmartDashboard.putBoolean("Manual Mode", manualModeOn);
-    }
+  public void getTableData() {
+    position = yEntry.getDouble(5.0);
+  }
 }
