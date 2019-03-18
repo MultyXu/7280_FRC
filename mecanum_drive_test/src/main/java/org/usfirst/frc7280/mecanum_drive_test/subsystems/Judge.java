@@ -21,6 +21,7 @@ public class Judge extends Subsystem {
   // here. Call these from Commands.
 
   public boolean manualModeOn = false;
+  public boolean hasBall = false;
 
   @Override
   public void initDefaultCommand() {

@@ -174,6 +174,14 @@ public class Base extends Subsystem {
         SmartDashboard.putNumber("RR position", rightRearMotor.getSelectedSensorPosition());
     }
 
+    public void percentageDrive(double _leftSpeed, double _rightSpeed){
+        leftFrontMotor.set(ControlMode.PercentOutput, _leftSpeed);
+        leftRearMotor.set(ControlMode.PercentOutput, _leftSpeed);
+        rightFrontMotor.set(ControlMode.PercentOutput, _rightSpeed);
+        rightRearMotor.set(ControlMode.PercentOutput, _rightSpeed);
+
+    }
+
     public int getCurrentDistance() {
         return rightFrontMotor.getSelectedSensorPosition();
     }

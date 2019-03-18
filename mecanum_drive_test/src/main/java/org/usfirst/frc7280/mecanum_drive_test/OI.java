@@ -79,13 +79,6 @@ public class OI {
     public JoystickButton grabBall;
     public JoystickButton putBall;
 
-    //turning button
-    public JoystickButton leftTurn45;
-    public JoystickButton leftTurn90;
-    public JoystickButton rightTurn45;
-    public JoystickButton rightTurn90;
-
-
     
 
     public OI() {
@@ -123,16 +116,6 @@ public class OI {
         armDown = new JoystickButton(functionStick, 8);
         armLift.whenPressed(new ArmLift());
         armDown.whenPressed(new ArmDown());
-
-        leftTurn45 = new JoystickButton(motionStick, 1);
-        leftTurn90 = new JoystickButton(motionStick, 2);
-        rightTurn45 = new JoystickButton(motionStick, 3);
-        rightTurn90 = new JoystickButton(motionStick, 4);
-
-        leftTurn45.whenPressed(new MoveZ(Constants.leftTurn45));
-        leftTurn90.whenPressed(new MoveZ(Constants.leftTurn90));
-        rightTurn45.whenPressed(new MoveZ(Constants.rightTurn45));
-        rightTurn90.whenPressed(new MoveZ(Constants.rightTurn90));
 
 
         if (setManual){

@@ -22,7 +22,7 @@ public class Networktable extends Subsystem {
   NetworkTable table = inst.getTable("position");
   NetworkTableEntry yEntry = inst.getEntry("Y");
 
-  public double position;
+  public int position;
 
   public Networktable(){
     inst.startClientTeam(7280);
@@ -37,6 +37,6 @@ public class Networktable extends Subsystem {
   }
 
   public void getTableData() {
-    position = yEntry.getDouble(5.0);
+    position = (int)yEntry.getDouble(5.0);
   }
 }

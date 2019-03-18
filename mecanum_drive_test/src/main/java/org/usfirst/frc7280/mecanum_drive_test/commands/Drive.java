@@ -41,8 +41,31 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
-        
+        if (Robot.oi.motionStick.getRawButtonPressed(1)){
+            if (!Robot.judge.hasBall) { 
+                switch (Robot.netWorkTable.position) {
+                    case 1: // the ball is on the left
+                        Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), 0.5);
+                        break;
+                    
+                    case 2: // the ball is in the center 
+                        Robot.base.drive(0.6, 0, 0);
+                        break;
+
+                    case 3: // the ball is on the right
+                        Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), -0.5);
+                        break;
+
+                    case 5:
+                        Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+                        break;
+                }
+            } else {
+                Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+            }
+        } else if (Robot.oi.motionStick.getRawButtonReleased(1)){
+            Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -63,5 +86,6 @@ public class Drive extends Command {
     protected void interrupted() {
         // end();
         // two cases: 1 the base can move, 2 the base can't move
+        Robot.base.stop();
     }
 }
