@@ -22,6 +22,12 @@ public class RobotMap {
     public static final int intakerMotor = 8;
     public static final int intakerSolenoid = 0;
 
+    // climb motor
+    public static final int backClimbMotor = 9;
+    public static final int frontMasterMotor = 10;
+    public static final int frontSlaveMotor = 11;
+    public static final int climbMotionMotor = 12;
+
 
     public RobotMap(){
 

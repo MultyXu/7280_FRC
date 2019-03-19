@@ -22,7 +22,6 @@ public class Constants {
     public static final int rightTurn90 = 32662;
 
 
-
     // Base speed 
     
     // Elevator PID values 
@@ -74,6 +73,11 @@ public class Constants {
     public static final int kLift = 33000;
     public static final int kDown = 0;
 
+
+    // climb PID values and height
+    public static final double kClimbPeakOutput = 0.3;
+    public static final int climbSecondLevel = 10000;
+    public static final int climbFirstLevel = 5000;
 
 
 }

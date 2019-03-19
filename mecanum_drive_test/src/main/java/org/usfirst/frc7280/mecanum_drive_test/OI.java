@@ -136,8 +136,11 @@ public class OI {
             grabPlate.whenPressed(new GrabPlate());
         }
 
-    
-
-
+        // virtual button 
+        SmartDashboard.putData("Climb Second Level", new ClimbStage(Constants.climbSecondLevel));
+        SmartDashboard.putData("Climb First Level", new ClimbStage(Constants.climbFirstLevel));
+        SmartDashboard.putData("put back front climb", new ClimbFront(0));
+        SmartDashboard.putData("pub back back climb", new ClimbBack(0));
+        SmartDashboard.putData("move climb", new ClimbMotion());
     }
 }
