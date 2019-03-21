@@ -14,6 +14,7 @@ package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
@@ -31,7 +32,7 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class Intaker extends Subsystem {
 
-    private TalonSRX intakerMotor = new TalonSRX(RobotMap.intakerMotor);
+    private VictorSPX intakerMotor = new VictorSPX(RobotMap.intakerMotor);
 
     Solenoid intakerSolenoid = new Solenoid(RobotMap.intakerSolenoid);
 

@@ -137,10 +137,11 @@ public class OI {
         }
 
         // virtual button 
-        SmartDashboard.putData("Climb Second Level", new ClimbStage(Constants.climbSecondLevel));
-        SmartDashboard.putData("Climb First Level", new ClimbStage(Constants.climbFirstLevel));
-        SmartDashboard.putData("put back front climb", new ClimbFront(0));
-        SmartDashboard.putData("pub back back climb", new ClimbBack(0));
+        SmartDashboard.putData("Climb Second Level", new ClimbStage(Constants.kClimbSecondLevel, Constants.climbSpeed));
+        SmartDashboard.putData("Climb First Level", new ClimbStage(Constants.kClimbFirstLevel, Constants.climbSpeed));
+        SmartDashboard.putData("retrieve level", new ClimbStage(Constants.kRetrieveLevel, -Constants.climbSpeed));
+        SmartDashboard.putData("put back front climb", new ClimbFront(Constants.kRetrieveLevel, -Constants.climbSpeed));
+        SmartDashboard.putData("pub back back climb", new ClimbBack(Constants.kRetrieveLevel, -Constants.climbSpeed));
         SmartDashboard.putData("move climb", new ClimbMotion());
     }
 }

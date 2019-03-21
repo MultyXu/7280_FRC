@@ -14,12 +14,14 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ClimbFront extends Command {
 
   private int level;
+  private int speed;
 
-  public ClimbFront(int _level) {
+  public ClimbFront(int _level, int _speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.climb);
     level = _level;
+    speed = _speed;
   }
 
   // Called just before this Command runs the first time
@@ -31,7 +33,7 @@ public class ClimbFront extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climb.frontClimb(level);
+    Robot.climb.frontClimb(level, speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,11 +45,14 @@ public class ClimbFront extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.climb.frontClimb(level, 0);
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

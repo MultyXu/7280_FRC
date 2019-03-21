@@ -10,6 +10,7 @@ package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.commands.Judging;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,6 +23,8 @@ public class Judge extends Subsystem {
 
   public boolean manualModeOn = false;
   public boolean hasBall = false;
+  public boolean atButtom = false;
+  private DigitalInput elevatorSensor = new DigitalInput(1);
 
   @Override
   public void initDefaultCommand() {
@@ -37,5 +40,9 @@ public class Judge extends Subsystem {
       manualModeOn = false;
     }
     SmartDashboard.putBoolean("Manual Mode", manualModeOn);
+  }
+
+    public void detecting(){
+      atButtom = elevatorSensor.get();
     }
 }

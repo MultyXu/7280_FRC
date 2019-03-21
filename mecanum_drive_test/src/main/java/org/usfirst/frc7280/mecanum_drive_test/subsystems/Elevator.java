@@ -10,6 +10,7 @@ package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,7 +29,7 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
 
   public TalonSRX elevatorMaster = new TalonSRX(RobotMap.elevatorMasterMotor);
-  private TalonSRX elevatorSlave = new TalonSRX(RobotMap.elevatorSlaveMotor);
+  private VictorSPX elevatorSlave = new VictorSPX(RobotMap.elevatorSlaveMotor);
 
   RobotMap robotMap = new RobotMap();
   public int elevatorPosition;
