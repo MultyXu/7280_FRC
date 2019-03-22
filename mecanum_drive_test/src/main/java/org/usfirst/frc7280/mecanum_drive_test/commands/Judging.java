@@ -27,6 +27,7 @@ public class Judging extends Command {
   @Override
   protected void execute() {
     Robot.judge.setManualMode();
+    Robot.judge.detecting();
   }
 
   // Make this return true when this Command no longer needs to run execute()

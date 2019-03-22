@@ -98,7 +98,7 @@ public class OI {
         liftFifthLevel = new JoystickButton(functionStick, 6);
 
         // asociate elevaor button to function 
-        liftZero.whenPressed(new Lift(Constants.kZeroLevel));
+        liftZero.whenPressed(new LiftZero(Constants.kZeroLevel));
         liftFirstLevel.whenPressed(new Lift(Constants.kFirstLevel));
         liftSecondLevel.whenPressed(new Lift(Constants.kSecondLevel));
         liftThirdLevel.whenPressed(new Lift(Constants.kThirdLevel));

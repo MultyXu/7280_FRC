@@ -22,7 +22,7 @@ public class Judge extends Subsystem {
 
   public boolean manualModeOn = false;
   public boolean hasBall = false;
-  public boolean atButtom = false;
+  public boolean atButtom = true;
   public int visionDistence = 1000;
   private DigitalInput elevatorSensor = new DigitalInput(1);
 

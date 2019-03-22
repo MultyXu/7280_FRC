@@ -35,7 +35,7 @@ public class GrabPlate extends CommandGroup {
     */
 
 
-    //addParallel(new ArmDown());
+    addParallel(new ArmDown());
     addParallel(new SolenoidOut());
     addParallel(new Lift(Constants.kFirstLevel));
     addSequential(new visionMotion());

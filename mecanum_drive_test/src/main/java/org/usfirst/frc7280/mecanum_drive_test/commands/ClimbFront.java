@@ -17,6 +17,7 @@ public class ClimbFront extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.climb);
+    requires(Robot.base);
   }
 
   // Called just before this Command runs the first time

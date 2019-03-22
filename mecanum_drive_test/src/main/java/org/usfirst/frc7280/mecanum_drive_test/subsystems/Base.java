@@ -46,6 +46,10 @@ public class Base extends Subsystem {
     int targetDistanceY;
     int targetDistanceZ;
 
+    public boolean visionTurnOK = false;
+    public boolean visionDriveOK = false;
+    public boolean tableOn = false;
+
     public Base() {
 
         robotMap.TalonSRXInit(leftFrontMotor, Constants.kBasePeakOutput);
@@ -102,49 +106,70 @@ public class Base extends Subsystem {
     }
 
     public double visionTurn() {
+        tableOn = true;
         double zSpeed = 0;
         switch (Robot.netWorkTable.upTape){
             case 1: // the target is on the left
-                zSpeed = -1;
+                zSpeed = -0.5;
+                visionTurnOK = false;
                 break;
 
             case 2: // the target is on the right
-                zSpeed = 1;
+                zSpeed = 0.5;
+                visionTurnOK = false;
                 break;
 
             case 3: // the target is on the centre
                 zSpeed = 0;
+                visionTurnOK = true;
                 break;
         }
+        SmartDashboard.putBoolean("visionTurnOK", visionTurnOK);
+        SmartDashboard.putNumber("visionTurn", zSpeed);
+        SmartDashboard.putNumber("visionTurnCase", Robot.netWorkTable.upTape);
+
         return zSpeed;
     }
 
     public double[] visionDrive() {
+        tableOn = true;
         double[] yxSpeed = {0,0};
         switch (Robot.netWorkTable.downTape) {
             case 1 | 4: // the target is on the left
                 yxSpeed[0] = 0;
-                yxSpeed[1] = 1;
+                yxSpeed[1] = 0.5;
+                visionDriveOK = false;
                 break;
 
             case 2 | 5: // the target is on the right
                 yxSpeed[0] = 0;
-                yxSpeed[1] = -1;
+                yxSpeed[1] = -0.5;
+                visionDriveOK = false;
                 break;
 
             case 3: // the target is on the centre
-                yxSpeed[0] = 1;
+                yxSpeed[0] = 0; // modified for further version
                 yxSpeed[1] = 0;
+                visionDriveOK = true;
                 break;
         }
+        SmartDashboard.putBoolean("visionDriveOK", visionDriveOK);
+        SmartDashboard.putNumber("visionTurn", yxSpeed[1]);
+
         return yxSpeed;
     }
 
     public void speed(double yValue, double xValue, double zValue){
-        frontLeftSpeed = (yValue - xValue - zValue / 1.3) * 450;
-        rearLeftSpeed = (yValue + xValue - zValue / 1.3) * 450;
-        frontRightSpeed = (yValue + xValue + zValue / 1.3) * 450;
-        rearRighttSpeed = (yValue - xValue + zValue / 1.3) * 450;
+        tableOn = false;
+        double kfrontLeftSpeed = (yValue - xValue - zValue / 1.3) * 1500;
+        double krearLeftSpeed = (yValue + xValue - zValue / 1.3) * 1500;
+        double kfrontRightSpeed = (yValue + xValue + zValue / 1.3) * 1500;
+        double krearRighttSpeed = (yValue - xValue + zValue / 1.3) * 1500;
+
+        leftFrontMotor.set(ControlMode.Velocity, kfrontLeftSpeed);
+        leftRearMotor.set(ControlMode.Velocity, krearLeftSpeed);
+        rightFrontMotor.set(ControlMode.Velocity, kfrontRightSpeed);
+        rightRearMotor.set(ControlMode.Velocity, krearRighttSpeed);
     }
 
     public void speedDrive(){

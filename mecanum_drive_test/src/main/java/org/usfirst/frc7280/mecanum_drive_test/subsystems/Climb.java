@@ -52,8 +52,8 @@ public class Climb extends Subsystem {
     //frontSlaveMotor.follow(frontMasterMotor);
 
     robotMap.setMotorPID(backClimbMotor, 0, 0.07, 0, 0);
-    robotMap.setMotorPID(frontMasterMotor, 0, 0.13, 0, 0);
-    robotMap.setMotorPID(frontSlaveMotor, 0, 0.11, 0, 0);
+    robotMap.setMotorPID(frontMasterMotor, 0, 0.16, 0, 0);
+    robotMap.setMotorPID(frontSlaveMotor, 0, 0.14, 0, 0);
 
     frontMasterMotor.setNeutralMode(NeutralMode.Brake);
     frontSlaveMotor.setNeutralMode(NeutralMode.Brake);
@@ -107,10 +107,11 @@ public class Climb extends Subsystem {
   public void retrieveFront() {
     frontMasterMotor.set(ControlMode.Position, 0);
     frontSlaveMotor.set(ControlMode.Position, 0);
+    Robot.base.drive(-0.2, 0, 0);
   }
 
   public void climbMotion(){
-    climbMotionMotor.set(ControlMode.PercentOutput, -0.2);
+    climbMotionMotor.set(ControlMode.PercentOutput, -0.4);
   }
 
   public void motionStop(){

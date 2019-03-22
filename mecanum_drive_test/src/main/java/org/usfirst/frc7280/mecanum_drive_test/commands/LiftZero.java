@@ -11,20 +11,15 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Lift extends Command {
+public class LiftZero extends Command {
 
   int targetPosition;
-  boolean finished = false;
 
-  public Lift(int _position) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  public LiftZero(int _position) {
     requires(Robot.elevator);
-    requires(Robot.base);
 
     // determine target position
     targetPosition = _position;
-
   }
 
   // Called just before this Command runs the first time
@@ -35,36 +30,25 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    finished = false;
-    if (Robot.judge.manualModeOn) {
-      Robot.elevator.liftToPosition(targetPosition);
-    } else {
-      if (Robot.base.visionDriveOK && Robot.base.visionTurnOK) {
-        Robot.elevator.liftToPosition(targetPosition);
-        finished = true;
-      } else {
-        Robot.base.speed(Robot.oi.motionStick.getY(), Robot.base.visionDrive()[1], Robot.base.visionTurn());
-        //Robot.base.speedDrive();
-      }
-    }
+    Robot.elevator.liftToPosition(targetPosition);
+    // modify needed after installing 霍尔开关
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return finished;
+    return (Math.abs(Robot.elevator.elevatorPosition - targetPosition) < 1000
+        && Robot.elevator.elevatorMaster.getSelectedSensorVelocity() == 0);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevator.liftToPosition(targetPosition);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

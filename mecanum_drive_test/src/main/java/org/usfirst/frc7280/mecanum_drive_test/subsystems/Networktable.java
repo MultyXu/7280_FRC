@@ -7,7 +7,9 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 
+import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.commands.GetTableData;
+import org.usfirst.frc7280.mecanum_drive_test.commands.Lift;
 
 import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -25,11 +27,14 @@ public class Networktable extends Subsystem {
   NetworkTableEntry upTapeEntry = put.getEntry("X");
   NetworkTableEntry downTapeEntry = put.getEntry("X");
 
+  NetworkTable sender = inst.getTable("isNeeded");
+  NetworkTableEntry isNeeded = sender.getEntry("X");
 
 
   public int ballPosition;
   public int upTape;
   public int downTape;
+  double x = 0;
 
   public Networktable(){
     inst.startClientTeam(7280);
@@ -45,7 +50,14 @@ public class Networktable extends Subsystem {
 
   public void getTableData() {
     ballPosition = (int) ballPositioneEntry.getDouble(5.0);
-    upTape = (int) upTapeEntry.getDouble(5.0);
+    upTape = (int) upTapeEntry.getDouble(1.0);
     downTape = (int) downTapeEntry.getDouble(5.0);
+
+    isNeeded.setDouble(x);
+    if (Robot.base.tableOn) {
+      x = 1.0;
+    } else {
+      x = 0.0;
+    }
   }
 }
