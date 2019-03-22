@@ -8,6 +8,7 @@
 package org.usfirst.frc7280.mecanum_drive_test.command_group;
 
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
+import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.commands.*;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -16,6 +17,7 @@ public class GrabPlate extends CommandGroup {
   /**
    * Add your docs here.
    */
+  
   public GrabPlate() {
     /* 
     0.Arm down to position 
@@ -32,7 +34,8 @@ public class GrabPlate extends CommandGroup {
     5.6.7.
     */
 
-    addParallel(new ArmDown());
+
+    //addParallel(new ArmDown());
     addParallel(new SolenoidOut());
     addParallel(new Lift(Constants.kFirstLevel));
     addSequential(new visionMotion());
@@ -42,6 +45,7 @@ public class GrabPlate extends CommandGroup {
     addSequential(new MoveY(-3000));
 
     addParallel(new SolenoidIn());
+
 
   }
 }

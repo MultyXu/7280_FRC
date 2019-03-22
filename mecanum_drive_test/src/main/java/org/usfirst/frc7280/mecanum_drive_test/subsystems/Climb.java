@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
+import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -50,9 +51,9 @@ public class Climb extends Subsystem {
     climbMotionMotor.setInverted(true);
     //frontSlaveMotor.follow(frontMasterMotor);
 
-    robotMap.setMotorPID(backClimbMotor, 0, 0.1, 0, 0);
-    robotMap.setMotorPID(frontMasterMotor, 0, 0.1, 0, 0);
-    robotMap.setMotorPID(frontSlaveMotor, 0, 0.1, 0, 0);
+    robotMap.setMotorPID(backClimbMotor, 0, 0.07, 0, 0);
+    robotMap.setMotorPID(frontMasterMotor, 0, 0.13, 0, 0);
+    robotMap.setMotorPID(frontSlaveMotor, 0, 0.11, 0, 0);
 
     frontMasterMotor.setNeutralMode(NeutralMode.Brake);
     frontSlaveMotor.setNeutralMode(NeutralMode.Brake);
@@ -73,7 +74,7 @@ public class Climb extends Subsystem {
     
     if (Math.abs(Math.abs(frontMasterMotor.getSelectedSensorPosition()) - level)  <= 1000 
         && Math.abs(Math.abs(frontSlaveMotor.getSelectedSensorPosition()) - level) <= 1000
-        && Math.abs(Math.abs(backClimbMotor.getSelectedSensorPosition()) - level) <= 1000){
+        && Math.abs(Math.abs(backClimbMotor.getSelectedSensorPosition()) - level) <= 1200){
 
       if (level >= _level){
         level = _level;
@@ -100,6 +101,7 @@ public class Climb extends Subsystem {
 
   public void retrieveBack(){
     backClimbMotor.set(ControlMode.Position, 0);
+    Robot.base.drive(-0.2, 0, 0);
   }
 
   public void retrieveFront() {

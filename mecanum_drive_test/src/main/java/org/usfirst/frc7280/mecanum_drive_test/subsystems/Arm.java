@@ -7,18 +7,16 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 
-import java.awt.geom.Ellipse2D.Double;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
-import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
 import org.usfirst.frc7280.mecanum_drive_test.commands.ManualArm;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -62,6 +60,8 @@ public class Arm extends Subsystem {
     armMotor.set(ControlMode.Position, Constants.kLift);
     armPosition = armMotor.getSelectedSensorPosition();
     armSpeed = armMotor.getSelectedSensorVelocity();
+    
+    SmartDashboard.putNumber("arm position", armPosition);
   }
 
   public void down(){
@@ -69,6 +69,9 @@ public class Arm extends Subsystem {
     armMotor.set(ControlMode.Position, Constants.kDown);
     armPosition = armMotor.getSelectedSensorPosition();
     armSpeed = armMotor.getSelectedSensorVelocity();
+
+    SmartDashboard.putNumber("arm position", armPosition);
+
   }
 
   // manual control method for arms, control it with right stick

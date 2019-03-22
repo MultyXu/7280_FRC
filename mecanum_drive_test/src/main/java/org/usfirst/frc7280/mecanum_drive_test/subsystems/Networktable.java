@@ -19,12 +19,17 @@ public class Networktable extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   NetworkTableInstance inst = NetworkTableInstance.getDefault();
-  NetworkTable table = inst.getTable("position");
-  NetworkTableEntry yEntry = inst.getEntry("Y");
+  NetworkTable put = inst.getTable("tape");
+  NetworkTable ball = inst.getTable("ball");
+  NetworkTableEntry ballPositioneEntry = ball.getEntry("Y");
+  NetworkTableEntry upTapeEntry = put.getEntry("X");
+  NetworkTableEntry downTapeEntry = put.getEntry("X");
 
-  public int position;
-  public int xPosition;
-  public int zPosition;
+
+
+  public int ballPosition;
+  public int upTape;
+  public int downTape;
 
   public Networktable(){
     inst.startClientTeam(7280);
@@ -39,6 +44,8 @@ public class Networktable extends Subsystem {
   }
 
   public void getTableData() {
-    position = (int)yEntry.getDouble(5.0);
+    ballPosition = (int) ballPositioneEntry.getDouble(5.0);
+    upTape = (int) upTapeEntry.getDouble(5.0);
+    downTape = (int) downTapeEntry.getDouble(5.0);
   }
 }

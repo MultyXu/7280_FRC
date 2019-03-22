@@ -43,7 +43,7 @@ public class ClimbStage extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climb.climbStop();
+    Robot.climb.climbStage(level);
   }
 
   // Called when another command which requires one or more of the same

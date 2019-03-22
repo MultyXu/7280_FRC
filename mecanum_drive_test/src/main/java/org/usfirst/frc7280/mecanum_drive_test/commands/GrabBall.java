@@ -11,11 +11,14 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ManualArm extends Command {
-  public ManualArm() {
+public class GrabBall extends Command {
+
+  boolean finished;
+
+  public GrabBall() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.arm);
+    requires(Robot.intaker);
+    requires((Robot.arm));
   }
 
   // Called just before this Command runs the first time
@@ -26,27 +29,33 @@ public class ManualArm extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.judge.manualModeOn && Robot.oi.functionStick.getRawButton(12)){
-    Robot.arm.ManualRun(Robot.oi.functionStick.getRawAxis(3)/2);
+
+    finished = false;
+
+    Robot.intaker.take(-0.3);
+    Robot.arm.down();
+    if (Robot.oi.motionStick.getRawButtonReleased(1)){
+      Robot.intaker.take(0);
+      Robot.arm.lift();
+      finished = true;;
     }
-  } 
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return finished;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.arm.stop();
+    Robot.arm.lift();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

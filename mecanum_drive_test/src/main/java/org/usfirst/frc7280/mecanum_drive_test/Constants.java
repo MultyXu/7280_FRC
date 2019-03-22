@@ -69,16 +69,16 @@ public class Constants {
     public static final double kArmI = 0;
     public static final double kArmD = 0;
     public static final double kArmF = 0.0;
-    public static final double kArmPeakOutput = 0.4;
+    public static final double kArmPeakOutput = 0.2;
     
     // Arm lift values
-    public static final int kLift = 0;
+    public static final int kLift = -3000;
     public static final int kDown = -33000;
 
 
     // climb PID values and height
     public static final double kClimbPeakOutput = 0.2;
-    public static final int kClimbSecondLevel = 160000;
+    public static final int kClimbSecondLevel = 166000;
     public static final int kClimbFirstLevel = 100000;
     public static final int kRetrieveLevel = 0;
     public static final int climbSpeed = 2000;

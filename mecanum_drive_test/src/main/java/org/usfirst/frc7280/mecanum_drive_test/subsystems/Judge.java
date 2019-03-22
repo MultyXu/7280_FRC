@@ -7,12 +7,10 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 
-import org.usfirst.frc7280.mecanum_drive_test.OI;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.commands.Judging;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
@@ -38,10 +36,8 @@ public class Judge extends Subsystem {
   public void setManualMode(){
     if (Robot.oi.functionStick.getPOV() == 0){
       manualModeOn = true;
-      Robot.oi = new OI();
     } else if (Robot.oi.functionStick.getPOV() == 180){
       manualModeOn = false;
-      Robot.oi = new OI();
     }
     SmartDashboard.putBoolean("Manual Mode", manualModeOn);
   }

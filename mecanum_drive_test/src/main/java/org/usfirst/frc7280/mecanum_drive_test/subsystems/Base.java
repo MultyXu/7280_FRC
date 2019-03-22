@@ -78,15 +78,15 @@ public class Base extends Subsystem {
         configVelocityPID();
 
         if (Robot.elevator.targetPosition > -10000){
-            frontLeftSpeed = (yValue - xValue - zValue) * 1500 * 2;
-            rearLeftSpeed = (yValue + xValue - zValue) * 1500 * 2;
-            frontRightSpeed = (yValue + xValue + zValue) * 1500 * 2;
-            rearRighttSpeed = (yValue - xValue + zValue) * 1500 * 2;
+            frontLeftSpeed = (yValue - xValue - zValue / 1.3) * 1200 * 2;
+            rearLeftSpeed = (yValue + xValue - zValue / 1.3) * 1200 * 2;
+            frontRightSpeed = (yValue + xValue + zValue / 1.3) * 1200 * 2;
+            rearRighttSpeed = (yValue - xValue + zValue / 1.3) * 1200 * 2;
         } else {
-            frontLeftSpeed = (yValue - xValue - zValue) * 750;
-            rearLeftSpeed = (yValue + xValue - zValue) * 750;
-            frontRightSpeed = (yValue + xValue + zValue) * 750;
-            rearRighttSpeed = (yValue - xValue + zValue) * 750;
+            frontLeftSpeed = (yValue - xValue - zValue / 1.3) * 750 * 2;
+            rearLeftSpeed = (yValue + xValue - zValue / 1.3) * 750 * 2;
+            frontRightSpeed = (yValue + xValue + zValue / 1.3) * 750 * 2;
+            rearRighttSpeed = (yValue - xValue + zValue / 1.3) * 750 * 2;
         }
         
         speedDrive();
@@ -103,7 +103,7 @@ public class Base extends Subsystem {
 
     public double visionTurn() {
         double zSpeed = 0;
-        switch (Robot.netWorkTable.zPosition){
+        switch (Robot.netWorkTable.upTape){
             case 1: // the target is on the left
                 zSpeed = -1;
                 break;
@@ -121,7 +121,7 @@ public class Base extends Subsystem {
 
     public double[] visionDrive() {
         double[] yxSpeed = {0,0};
-        switch (Robot.netWorkTable.xPosition) {
+        switch (Robot.netWorkTable.downTape) {
             case 1 | 4: // the target is on the left
                 yxSpeed[0] = 0;
                 yxSpeed[1] = 1;
@@ -141,10 +141,10 @@ public class Base extends Subsystem {
     }
 
     public void speed(double yValue, double xValue, double zValue){
-        frontLeftSpeed = (yValue - xValue - zValue) * 450;
-        rearLeftSpeed = (yValue + xValue - zValue) * 450;
-        frontRightSpeed = (yValue + xValue + zValue) * 450;
-        rearRighttSpeed = (yValue - xValue + zValue) * 450;
+        frontLeftSpeed = (yValue - xValue - zValue / 1.3) * 450;
+        rearLeftSpeed = (yValue + xValue - zValue / 1.3) * 450;
+        frontRightSpeed = (yValue + xValue + zValue / 1.3) * 450;
+        rearRighttSpeed = (yValue - xValue + zValue / 1.3) * 450;
     }
 
     public void speedDrive(){

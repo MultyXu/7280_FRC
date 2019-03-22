@@ -105,6 +105,22 @@ public class OI {
         liftFourthLevel.whenPressed(new Lift(Constants.kFourthLevel));
         liftFifthLevel.whenPressed(new Lift(Constants.kFifthLevel));
 
+
+        // manual move arm
+        armLift= new JoystickButton(functionStick, 7);
+        armDown = new JoystickButton(functionStick, 8);
+        armLift.whenPressed(new ArmLift());
+        armDown.whenPressed(new ArmDown());
+
+        // manual solenoid
+        solenoidActivate = new JoystickButton(functionStick, 9);
+        solenoidActivate.toggleWhenPressed(new SolenoidActivate());
+
+        elevatorDown = new JoystickButton(functionStick, 10);
+        elevatorDown.whenPressed(new ElevatorDown());
+
+
+
         // manually grab and shoot the ball, config button
         shoot = new JoystickButton(motionStick, 7);
         grab = new JoystickButton(motionStick, 8);
@@ -112,31 +128,19 @@ public class OI {
         shoot.whileHeld(new Take());
         grab.whileHeld(new Grab());
 
-        armLift= new JoystickButton(functionStick, 7);
-        armDown = new JoystickButton(functionStick, 8);
-        armLift.whenPressed(new ArmLift());
-        armDown.whenPressed(new ArmDown());
+        // auto plate
+        grabPlate = new JoystickButton(motionStick, 3);
+        putPlate = new JoystickButton(motionStick, 4);
 
+        grabPlate.whenPressed(new GrabPlate());
+        putPlate.whenPressed(new PutPlate());
 
-        if (setManual){
+        // auto Ball
+        grabBall = new JoystickButton(motionStick, 1);
+        putBall = new JoystickButton(motionStick, 2);
 
-        elevatorDown = new JoystickButton(functionStick, 10);
-        elevatorDown.whenPressed(new ElevatorDown());
-
-        solenoidActivate = new JoystickButton(functionStick, 9);
-        solenoidActivate.toggleWhenPressed(new SolenoidActivate());
-
-        } else{ 
-            //set auto mode here to run command group
-            grabPlate = new JoystickButton(functionStick, 7);
-            putPlate = new JoystickButton(functionStick, 8);
-            grabBall = new JoystickButton(motionStick, 5);
-            putBall = new JoystickButton(motionStick, 6);
-
-            grabPlate.whenPressed(new GrabPlate());
-
-            putBall.whenPressed(new PutBall());
-        }
+        grabBall.whenPressed(new GrabBall());
+        putBall.whenPressed(new PutBall());
 
         // virtual button 
         SmartDashboard.putData("Climb Second Level", new ClimbStage(Constants.kClimbSecondLevel));

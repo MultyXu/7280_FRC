@@ -26,7 +26,7 @@ public class ManualElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.judge.manualModeOn && Robot.oi.functionStick.getRawButtonPressed(11)){
+    if(Robot.judge.manualModeOn && Robot.oi.functionStick.getRawButton(11)){
     Robot.elevator.manualRun(Robot.oi.functionStick.getY()/2);
     }
   }

@@ -32,27 +32,23 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if (Robot.oi.motionStick.getRawButtonPressed(1)){
-            if (!Robot.judge.hasBall) { 
-                switch (Robot.netWorkTable.position) {
-                    case 1: // the ball is on the left
-                        Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), 0.5);
-                        break;
-                    
-                    case 2: // the ball is in the center 
-                        Robot.base.drive(0.6, 0, 0);
-                        break;
+        if (Robot.oi.motionStick.getRawButton(1)){
+            switch (Robot.netWorkTable.ballPosition) {
+                case 1: // the ball is on the left
+                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), -0.6);
+                    break;
+                
+                case 3: // the ball is in the center 
+                    Robot.base.drive(-0.3, 0, 0);
+                    break;
 
-                    case 3: // the ball is on the right
-                        Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), -0.5);
-                        break;
+                case 2: // the ball is on the right
+                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), 0.6);
+                    break;
 
-                    case 5:
-                        Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
-                        break;
-                }
-            } else {
-                Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+                case 5:
+                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+                    break;
             }
         } else {
             Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
