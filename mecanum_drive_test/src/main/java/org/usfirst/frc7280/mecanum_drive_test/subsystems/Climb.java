@@ -30,14 +30,11 @@ public class Climb extends Subsystem {
   private TalonSRX frontSlaveMotor = new TalonSRX(RobotMap.frontSlaveMotor);
   private VictorSPX climbMotionMotor = new VictorSPX(RobotMap.climbMotionMotor);
 
+  private int level = 0;
+  private int frontLevel;
+  private int backLevel;
+
   RobotMap robotMap = new RobotMap();
-
-  private int frontPosition;
-  private int backPosition;
-
-  private boolean frontClimbFinished = false;
-  private boolean backClimbFinished = false;
-
 
   public Climb(){
     frontMasterMotor.configFactoryDefault();
@@ -53,15 +50,16 @@ public class Climb extends Subsystem {
     climbMotionMotor.setInverted(true);
     //frontSlaveMotor.follow(frontMasterMotor);
 
-    robotMap.setMotorPID(backClimbMotor, 0.197, 0, 0, 0);
-    robotMap.setMotorPID(frontMasterMotor, 0.197, 0, 0, 0);
-    robotMap.setMotorPID(frontSlaveMotor, 0.197, 0, 0, 0);
+    robotMap.setMotorPID(backClimbMotor, 0, 0.1, 0, 0);
+    robotMap.setMotorPID(frontMasterMotor, 0, 0.1, 0, 0);
+    robotMap.setMotorPID(frontSlaveMotor, 0, 0.1, 0, 0);
 
     frontMasterMotor.setNeutralMode(NeutralMode.Brake);
     frontSlaveMotor.setNeutralMode(NeutralMode.Brake);
-    backClimbMotor.setNeutralMode(NeutralMode.Brake);    
+    backClimbMotor.setNeutralMode(NeutralMode.Brake);
 
     backClimbMotor.setSensorPhase(false);
+    frontSlaveMotor.setSensorPhase(false);
   }
 
   @Override
@@ -70,30 +68,43 @@ public class Climb extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void frontClimb(int _level, int _speed){
+  public void climbStage(int _level){
+    int step = _level / 4;
+    
+    if (Math.abs(Math.abs(frontMasterMotor.getSelectedSensorPosition()) - level)  <= 1000 
+        && Math.abs(Math.abs(frontSlaveMotor.getSelectedSensorPosition()) - level) <= 1000
+        && Math.abs(Math.abs(backClimbMotor.getSelectedSensorPosition()) - level) <= 1000){
 
-    frontPosition = Math.abs(frontMasterMotor.getSelectedSensorPosition());
-    frontClimbFinished = (frontPosition >= _level);
+      if (level >= _level){
+        level = _level;
+      } else {
+        level += step;
+      }
 
-    if (frontClimbFinished) {
-      frontMasterMotor.set(ControlMode.Velocity, 0);
-      frontSlaveMotor.set(ControlMode.Velocity, 0);  
     } else {
-      frontMasterMotor.set(ControlMode.Velocity, _speed);
-      frontSlaveMotor.set(ControlMode.Velocity, _speed);
+      frontMasterMotor.set(ControlMode.Position, level);
+      frontSlaveMotor.set(ControlMode.Position, level);
+      backClimbMotor.set(ControlMode.Position, level);
+
+      SmartDashboard.putNumber("clim num", level);
+      SmartDashboard.putNumber("frontMaster pos", frontMasterMotor.getSelectedSensorPosition());
+      SmartDashboard.putNumber("frontSlave pos", frontSlaveMotor.getSelectedSensorPosition());
+      SmartDashboard.putNumber("back pos", backClimbMotor.getSelectedSensorPosition());
+
     }
+    frontLevel = _level;
+    backLevel = _level;
+    SmartDashboard.putNumber("front Level", frontLevel);
+    SmartDashboard.putNumber("back Level", backLevel);
   }
 
-  public void backClimb(int _level, int _speed){
+  public void retrieveBack(){
+    backClimbMotor.set(ControlMode.Position, 0);
+  }
 
-    backPosition = Math.abs(backClimbMotor.getSelectedSensorPosition());
-    backClimbFinished = (backPosition >= _level);
-
-    if (backClimbFinished){
-      backClimbMotor.set(ControlMode.Velocity, 0);
-    } else {
-      backClimbMotor.set(ControlMode.Velocity, _speed);
-    }
+  public void retrieveFront() {
+    frontMasterMotor.set(ControlMode.Position, 0);
+    frontSlaveMotor.set(ControlMode.Position, 0);
   }
 
   public void climbMotion(){
@@ -103,5 +114,11 @@ public class Climb extends Subsystem {
   public void motionStop(){
     climbMotionMotor.set(ControlMode.PercentOutput, 0);
 
+  }
+
+  public void climbStop(){
+    frontMasterMotor.set(ControlMode.PercentOutput, 0);
+    frontMasterMotor.set(ControlMode.PercentOutput, 0);
+    frontMasterMotor.set(ControlMode.PercentOutput, 0);
   }
 }

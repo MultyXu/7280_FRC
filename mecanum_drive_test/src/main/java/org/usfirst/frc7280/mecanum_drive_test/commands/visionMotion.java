@@ -11,45 +11,38 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ClimbStage extends Command {
-
-  private int level;
-
-  public ClimbStage(int _level) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.climb);
-    level = _level;
+public class visionMotion extends Command {
+  public visionMotion() {
+    requires(Robot.base);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climb.climbStage(level);
+    Robot.base.speed(Robot.base.visionDrive()[0], Robot.base.visionDrive()[1], Robot.base.visionTurn());
+    Robot.base.speedDrive();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.judge.visionDistence < 100;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climb.climbStop();
+    Robot.base.drive(0, 0, 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

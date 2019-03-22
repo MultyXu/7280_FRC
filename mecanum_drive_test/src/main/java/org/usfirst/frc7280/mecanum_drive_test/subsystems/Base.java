@@ -88,15 +88,8 @@ public class Base extends Subsystem {
             frontRightSpeed = (yValue + xValue + zValue) * 750;
             rearRighttSpeed = (yValue - xValue + zValue) * 750;
         }
-        // setLimit(frontLeftSpeed);
-        // setLimit(rearLeftSpeed);
-        // setLimit(frontRightSpeed);
-        // setLimit(rearRighttSpeed);
         
-        leftFrontMotor.set(ControlMode.Velocity, frontLeftSpeed);
-        leftRearMotor.set(ControlMode.Velocity, rearLeftSpeed);
-        rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
-        rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
+        speedDrive();
 
         SmartDashboard.putNumber("LF position", leftFrontMotor.getSelectedSensorPosition());
         SmartDashboard.putNumber("LR position", leftRearMotor.getSelectedSensorPosition());
@@ -106,7 +99,59 @@ public class Base extends Subsystem {
         SmartDashboard.putNumber("set base speed", frontLeftSpeed);
         SmartDashboard.putNumber("base speed", leftFrontMotor.getSelectedSensorVelocity());
         SmartDashboard.putNumber("output", leftFrontMotor.getMotorOutputPercent());
+    }
 
+    public double visionTurn() {
+        double zSpeed = 0;
+        switch (Robot.netWorkTable.zPosition){
+            case 1: // the target is on the left
+                zSpeed = -1;
+                break;
+
+            case 2: // the target is on the right
+                zSpeed = 1;
+                break;
+
+            case 3: // the target is on the centre
+                zSpeed = 0;
+                break;
+        }
+        return zSpeed;
+    }
+
+    public double[] visionDrive() {
+        double[] yxSpeed = {0,0};
+        switch (Robot.netWorkTable.xPosition) {
+            case 1 | 4: // the target is on the left
+                yxSpeed[0] = 0;
+                yxSpeed[1] = 1;
+                break;
+
+            case 2 | 5: // the target is on the right
+                yxSpeed[0] = 0;
+                yxSpeed[1] = -1;
+                break;
+
+            case 3: // the target is on the centre
+                yxSpeed[0] = 1;
+                yxSpeed[1] = 0;
+                break;
+        }
+        return yxSpeed;
+    }
+
+    public void speed(double yValue, double xValue, double zValue){
+        frontLeftSpeed = (yValue - xValue - zValue) * 450;
+        rearLeftSpeed = (yValue + xValue - zValue) * 450;
+        frontRightSpeed = (yValue + xValue + zValue) * 450;
+        rearRighttSpeed = (yValue - xValue + zValue) * 450;
+    }
+
+    public void speedDrive(){
+        leftFrontMotor.set(ControlMode.Velocity, frontLeftSpeed);
+        leftRearMotor.set(ControlMode.Velocity, rearLeftSpeed);
+        rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
+        rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
     }
 
     public void moveY(int _distance){

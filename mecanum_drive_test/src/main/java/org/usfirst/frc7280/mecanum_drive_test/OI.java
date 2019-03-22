@@ -80,10 +80,10 @@ public class OI {
     public JoystickButton putBall;
 
     
-
     public OI() {
     
         boolean setManual = Robot.judge.manualModeOn;
+        SmartDashboard.putBoolean("set Manual", setManual);
 
         // config joystck port
         functionStick = new Joystick(1);
@@ -130,18 +130,20 @@ public class OI {
             //set auto mode here to run command group
             grabPlate = new JoystickButton(functionStick, 7);
             putPlate = new JoystickButton(functionStick, 8);
-            grabBall = new JoystickButton(functionStick, 9);
-            putBall = new JoystickButton(functionStick, 10);
+            grabBall = new JoystickButton(motionStick, 5);
+            putBall = new JoystickButton(motionStick, 6);
 
             grabPlate.whenPressed(new GrabPlate());
+
+            putBall.whenPressed(new PutBall());
         }
 
         // virtual button 
-        SmartDashboard.putData("Climb Second Level", new ClimbStage(Constants.kClimbSecondLevel, Constants.climbSpeed));
-        SmartDashboard.putData("Climb First Level", new ClimbStage(Constants.kClimbFirstLevel, Constants.climbSpeed));
-        SmartDashboard.putData("retrieve level", new ClimbStage(Constants.kRetrieveLevel, -Constants.climbSpeed));
-        SmartDashboard.putData("put back front climb", new ClimbFront(Constants.kRetrieveLevel, -Constants.climbSpeed));
-        SmartDashboard.putData("pub back back climb", new ClimbBack(Constants.kRetrieveLevel, -Constants.climbSpeed));
+        SmartDashboard.putData("Climb Second Level", new ClimbStage(Constants.kClimbSecondLevel));
+        SmartDashboard.putData("Climb First Level", new ClimbStage(Constants.kClimbFirstLevel));
+        SmartDashboard.putData("put back front climb", new ClimbFront());
+        SmartDashboard.putData("pub back back climb", new ClimbBack());
         SmartDashboard.putData("move climb", new ClimbMotion());
+        SmartDashboard.putData("put both back", new retreiveClimb());
     }
 }

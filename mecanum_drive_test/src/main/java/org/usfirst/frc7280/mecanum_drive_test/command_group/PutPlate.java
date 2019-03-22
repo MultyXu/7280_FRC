@@ -49,14 +49,11 @@ public class PutPlate extends CommandGroup {
 
     */
 
-    addSequential(new MoveZ(200));
-
-    addParallel(new MoveX(200));
-    addParallel(new MoveY(200));
+    addSequential(new visionMotion());
     addSequential(new SolenoidOut());
 
     addParallel(new ElevatorDown());
-    addSequential(new MoveY(-200));
+    addSequential(new MoveY(-3000));
 
     addParallel(new Lift(Constants.kZeroLevel));
     addParallel(new ArmLift());

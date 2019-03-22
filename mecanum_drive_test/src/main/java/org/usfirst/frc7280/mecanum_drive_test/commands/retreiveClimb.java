@@ -11,27 +11,21 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ClimbStage extends Command {
-
-  private int level;
-
-  public ClimbStage(int _level) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+public class retreiveClimb extends Command {
+  public retreiveClimb() {
     requires(Robot.climb);
-    level = _level;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climb.climbStage(level);
+    Robot.climb.retrieveFront();
+    Robot.climb.retrieveBack();
   }
 
   // Make this return true when this Command no longer needs to run execute()

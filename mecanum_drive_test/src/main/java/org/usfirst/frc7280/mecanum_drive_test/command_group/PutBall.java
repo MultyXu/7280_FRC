@@ -34,13 +34,10 @@ public class PutBall extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    addSequential(new MoveZ(200));
-
-    addParallel(new MoveX(200));
-    addParallel(new MoveY(200));
+    addSequential(new visionMotion());
     addSequential(new ShootBall());
 
-    addParallel(new MoveY(-200));
+    addParallel(new MoveY(-3000));
     addParallel(new Lift(Constants.kZeroLevel));
     addParallel(new ArmLift());
 

@@ -23,6 +23,8 @@ public class Networktable extends Subsystem {
   NetworkTableEntry yEntry = inst.getEntry("Y");
 
   public int position;
+  public int xPosition;
+  public int zPosition;
 
   public Networktable(){
     inst.startClientTeam(7280);
