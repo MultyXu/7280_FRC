@@ -13,6 +13,10 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ArmDown extends Command {
+
+  ArmChange x = new ArmChange();
+
+
   public ArmDown() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -27,6 +31,7 @@ public class ArmDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    x.change = true;
     Robot.arm.down();
   }
 

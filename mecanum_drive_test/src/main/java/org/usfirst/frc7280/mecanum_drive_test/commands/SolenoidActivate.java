@@ -10,8 +10,12 @@ package org.usfirst.frc7280.mecanum_drive_test.commands;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SolenoidActivate extends Command {
+
+  public boolean change = false;
+
   public SolenoidActivate() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -26,7 +30,16 @@ public class SolenoidActivate extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intaker.cylinderUp();
+    // false is retreive, true is activate
+    if (Robot.oi.functionStick.getRawButtonPressed(9)){
+      change = !change;
+    }
+    if (!change) {
+      Robot.intaker.cylinderDown();
+    } else {
+      Robot.intaker.cylinderUp();
+    }
+    SmartDashboard.putBoolean("solenoid activate", change);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,13 +51,20 @@ public class SolenoidActivate extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intaker.cylinderDown();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
+    if (Robot.oi.functionStick.getRawButtonPressed(9)){
+      change = !change;
+    }
+    if (!change) {
+      Robot.intaker.cylinderDown();
+    } else {
+      Robot.intaker.cylinderUp();
+    }
+    SmartDashboard.putBoolean("solenoid activate", change);
   }
 }

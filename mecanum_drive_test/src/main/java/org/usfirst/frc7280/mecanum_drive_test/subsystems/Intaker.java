@@ -8,15 +8,14 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc7280.mecanum_drive_test.subsystems;
-
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
+import org.usfirst.frc7280.mecanum_drive_test.commands.SolenoidActivate;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -43,7 +42,7 @@ public class Intaker extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-
+        setDefaultCommand(new SolenoidActivate());
     }
 
     @Override

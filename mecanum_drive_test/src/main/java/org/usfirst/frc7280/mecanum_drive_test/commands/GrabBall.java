@@ -14,11 +14,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class GrabBall extends Command {
 
   boolean finished;
+  ArmChange x = new ArmChange();
+
 
   public GrabBall() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.intaker);
-    requires((Robot.arm));
+    requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
@@ -34,9 +36,13 @@ public class GrabBall extends Command {
 
     Robot.intaker.take(-0.3);
     Robot.arm.down();
-    if (Robot.oi.motionStick.getRawButtonReleased(1)){
+    x.change = true;
+
+    if (Robot.oi.motionStick.getRawButtonReleased(5)){
       Robot.intaker.take(0);
       Robot.arm.lift();
+      x.change = false;
+
       finished = true;;
     }
   }

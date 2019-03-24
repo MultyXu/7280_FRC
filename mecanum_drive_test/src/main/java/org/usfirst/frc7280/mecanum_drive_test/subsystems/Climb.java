@@ -71,6 +71,11 @@ public class Climb extends Subsystem {
 
   public void climbStage(int _level){
     int step = _level / 4;
+
+    robotMap.TalonSRXInit(backClimbMotor, Constants.kClimbPeakOutput);
+    robotMap.TalonSRXInit(frontMasterMotor, Constants.kClimbPeakOutput);
+    robotMap.TalonSRXInit(frontSlaveMotor, Constants.kClimbPeakOutput);
+
     
     if (Math.abs(Math.abs(frontMasterMotor.getSelectedSensorPosition()) - level)  <= 1000 
         && Math.abs(Math.abs(frontSlaveMotor.getSelectedSensorPosition()) - level) <= 1000
@@ -100,11 +105,16 @@ public class Climb extends Subsystem {
   }
 
   public void retrieveBack(){
+    robotMap.TalonSRXInit(backClimbMotor, Constants.kClimbBackOutput);
+
     backClimbMotor.set(ControlMode.Position, 0);
     Robot.base.drive(-0.2, 0, 0);
   }
 
   public void retrieveFront() {
+    robotMap.TalonSRXInit(frontMasterMotor, Constants.kClimbBackOutput);
+    robotMap.TalonSRXInit(frontSlaveMotor, Constants.kClimbBackOutput);
+
     frontMasterMotor.set(ControlMode.Position, 0);
     frontSlaveMotor.set(ControlMode.Position, 0);
     Robot.base.drive(-0.2, 0, 0);

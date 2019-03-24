@@ -14,9 +14,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LiftZero extends Command {
 
   int targetPosition;
+  ArmChange x = new ArmChange();
+
 
   public LiftZero(int _position) {
     requires(Robot.elevator);
+    requires(Robot.arm);
 
     // determine target position
     targetPosition = _position;
@@ -31,6 +34,8 @@ public class LiftZero extends Command {
   @Override
   protected void execute() {
     Robot.elevator.liftToPosition(targetPosition);
+    x.change = false;
+    Robot.arm.lift();
     // modify needed after installing 霍尔开关
   }
 

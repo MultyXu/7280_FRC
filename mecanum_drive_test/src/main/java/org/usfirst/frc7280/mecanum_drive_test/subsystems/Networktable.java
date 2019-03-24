@@ -24,8 +24,10 @@ public class Networktable extends Subsystem {
   NetworkTable put = inst.getTable("tape");
   NetworkTable ball = inst.getTable("ball");
   NetworkTableEntry ballPositioneEntry = ball.getEntry("Y");
-  NetworkTableEntry upTapeEntry = put.getEntry("X");
+  NetworkTableEntry upTapeEntry = put.getEntry("Y");
   NetworkTableEntry downTapeEntry = put.getEntry("X");
+
+  // modify needed check the networktale entry nuner
 
   NetworkTable sender = inst.getTable("isNeeded");
   NetworkTableEntry isNeeded = sender.getEntry("X");
@@ -50,7 +52,7 @@ public class Networktable extends Subsystem {
 
   public void getTableData() {
     ballPosition = (int) ballPositioneEntry.getDouble(5.0);
-    upTape = (int) upTapeEntry.getDouble(1.0);
+    upTape = (int) upTapeEntry.getDouble(5.0);
     downTape = (int) downTapeEntry.getDouble(5.0);
 
     isNeeded.setDouble(x);

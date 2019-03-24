@@ -12,7 +12,9 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
+import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
+import org.usfirst.frc7280.mecanum_drive_test.commands.ArmChange;
 import org.usfirst.frc7280.mecanum_drive_test.commands.ManualArm;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -53,6 +55,8 @@ public class Arm extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new ManualArm());
+    setDefaultCommand(new ArmChange());
+    //modify needed check whether they will interrupt themselves
   }
 
   public void lift(){

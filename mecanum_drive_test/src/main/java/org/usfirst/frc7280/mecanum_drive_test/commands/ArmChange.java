@@ -7,15 +7,19 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.commands;
 
+import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GetTableData extends Command {
-  public GetTableData() {
+public class ArmChange extends Command {
+
+  public boolean change = false;
+
+  public ArmChange() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.netWorkTable);
+    requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +30,15 @@ public class GetTableData extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.netWorkTable.getTableData();
+    // false is lift , ture is down
+    if (Robot.oi.functionStick.getRawButtonPressed(8)){
+      change = !change;
+    }
+    if (!change) {
+      Robot.arm.lift();
+    } else {
+    Robot.arm.down();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -44,6 +56,13 @@ public class GetTableData extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.netWorkTable.getTableData();
+    if (Robot.oi.functionStick.getRawButtonPressed(8)){
+      change = !change;
+    }
+    if (!change) {
+      Robot.arm.lift();
+    } else {
+    Robot.arm.down();
+    }
   }
 }

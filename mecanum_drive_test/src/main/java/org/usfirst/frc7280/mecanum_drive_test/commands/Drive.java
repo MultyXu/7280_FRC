@@ -32,18 +32,22 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if (Robot.oi.motionStick.getRawButton(1)){
+        if (Robot.oi.motionStick.getRawButton(5)){
             switch (Robot.netWorkTable.ballPosition) {
-                case 1: // the ball is on the left
-                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), -0.6);
+                case 0: // can't find ball
+                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+                    break;
+                    
+                case 1: // the ball is on the left4
+                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), -0.8);
                     break;
                 
                 case 3: // the ball is in the center 
-                    Robot.base.drive(-0.3, 0, 0);
+                    Robot.base.drive(Robot.oi.motionStick.getY()-0.5, 0, 0);
                     break;
 
                 case 2: // the ball is on the right
-                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), 0.6);
+                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), 0.8);
                     break;
 
                 case 5:

@@ -7,6 +7,7 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.commands;
 
+import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,6 +22,8 @@ public class Lift extends Command {
     // eg. requires(chassis);
     requires(Robot.elevator);
     requires(Robot.base);
+    requires(Robot.arm);
+    requires(Robot.intaker);
 
     // determine target position
     targetPosition = _position;
@@ -36,14 +39,20 @@ public class Lift extends Command {
   @Override
   protected void execute() {
     finished = false;
+
+    // if (targetPosition == Constants.kFirstLevel) {
+    //   Robot.arm.down();
+    // }
+
     if (Robot.judge.manualModeOn) {
       Robot.elevator.liftToPosition(targetPosition);
     } else {
       if (Robot.base.visionDriveOK && Robot.base.visionTurnOK) {
         Robot.elevator.liftToPosition(targetPosition);
+        // Robot.intaker.cylinderUp();
         finished = true;
       } else {
-        Robot.base.speed(Robot.oi.motionStick.getY(), Robot.base.visionDrive()[1], Robot.base.visionTurn());
+        Robot.base.speed(Robot.base.visionDrive()[0], Robot.base.visionDrive()[1], Robot.base.visionTurn());
         //Robot.base.speedDrive();
       }
     }

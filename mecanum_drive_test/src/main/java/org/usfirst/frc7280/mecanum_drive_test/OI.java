@@ -61,6 +61,7 @@ public class OI {
 
     // elevator level button
     public JoystickButton liftZero;
+    public JoystickButton liftZeroLevel;
     public JoystickButton liftFirstLevel;
     public JoystickButton liftSecondLevel;
     public JoystickButton liftThirdLevel;
@@ -71,7 +72,7 @@ public class OI {
     public JoystickButton solenoidActivate;
 
     public JoystickButton armLift;
-    public JoystickButton armDown;
+    public JoystickButton armChange;
 
     //auto button
     public JoystickButton grabPlate;
@@ -89,8 +90,10 @@ public class OI {
         functionStick = new Joystick(1);
         motionStick = new Joystick(0);
 
+        // function stick
         // Config elevator button
-        liftZero = new JoystickButton(functionStick, 1);
+        liftZero = new JoystickButton(functionStick, 7);
+        liftZeroLevel = new JoystickButton(functionStick, 1);
         liftFirstLevel = new JoystickButton(functionStick, 2);
         liftSecondLevel = new JoystickButton(functionStick, 3);
         liftThirdLevel = new JoystickButton(functionStick, 4);
@@ -99,6 +102,7 @@ public class OI {
 
         // asociate elevaor button to function 
         liftZero.whenPressed(new LiftZero(Constants.kZeroLevel));
+        liftZeroLevel.whenPressed(new Lift(Constants.kZeroLevel));
         liftFirstLevel.whenPressed(new Lift(Constants.kFirstLevel));
         liftSecondLevel.whenPressed(new Lift(Constants.kSecondLevel));
         liftThirdLevel.whenPressed(new Lift(Constants.kThirdLevel));
@@ -107,20 +111,20 @@ public class OI {
 
 
         // manual move arm
-        armLift= new JoystickButton(functionStick, 7);
-        armDown = new JoystickButton(functionStick, 8);
-        armLift.whenPressed(new ArmLift());
-        armDown.whenPressed(new ArmDown());
+        // armChange = new JoystickButton(functionStick, 8);
+        // armLift.whenPressed(new ArmLift());
+        // armChange.toggleWhenPressed(new ArmDown());
 
         // manual solenoid
-        solenoidActivate = new JoystickButton(functionStick, 9);
-        solenoidActivate.toggleWhenPressed(new SolenoidActivate());
+        // solenoidActivate = new JoystickButton(functionStick, 9);
+        // solenoidActivate.toggleWhenPressed(new SolenoidActivate());
+        // move to default command 
 
         elevatorDown = new JoystickButton(functionStick, 10);
         elevatorDown.whenPressed(new ElevatorDown());
 
 
-
+        // motion stick 
         // manually grab and shoot the ball, config button
         shoot = new JoystickButton(motionStick, 7);
         grab = new JoystickButton(motionStick, 8);
@@ -129,18 +133,18 @@ public class OI {
         grab.whileHeld(new Grab());
 
         // auto plate
-        grabPlate = new JoystickButton(motionStick, 3);
-        putPlate = new JoystickButton(motionStick, 4);
+        // grabPlate = new JoystickButton(motionStick, 3);
+        // putPlate = new JoystickButton(motionStick, 4);
 
-        grabPlate.whenPressed(new GrabPlate());
-        putPlate.whenPressed(new PutPlate());
+        // grabPlate.whenPressed(new GrabPlate());
+        // putPlate.whenPressed(new PutPlate());
 
         // auto Ball
-        grabBall = new JoystickButton(motionStick, 1);
-        putBall = new JoystickButton(motionStick, 2);
+        grabBall = new JoystickButton(motionStick, 5);
+        // putBall = new JoystickButton(motionStick, 2);
 
         grabBall.whenPressed(new GrabBall());
-        putBall.whenPressed(new PutBall());
+        // putBall.whenPressed(new PutBall());
 
         // virtual button 
         SmartDashboard.putData("Climb Second Level", new ClimbStage(Constants.kClimbSecondLevel));

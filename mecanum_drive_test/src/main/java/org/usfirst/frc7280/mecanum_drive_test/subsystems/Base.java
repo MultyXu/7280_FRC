@@ -109,6 +109,11 @@ public class Base extends Subsystem {
         tableOn = true;
         double zSpeed = 0;
         switch (Robot.netWorkTable.upTape){
+            case 0: // can't find tape
+                zSpeed = Robot.oi.motionStick.getZ();
+                visionTurnOK = false;
+                break;
+
             case 1: // the target is on the left
                 zSpeed = -0.5;
                 visionTurnOK = false;
@@ -135,6 +140,12 @@ public class Base extends Subsystem {
         tableOn = true;
         double[] yxSpeed = {0,0};
         switch (Robot.netWorkTable.downTape) {
+            case 0: // can't find tape
+                yxSpeed[0] = Robot.oi.motionStick.getY();
+                yxSpeed[1] = Robot.oi.motionStick.getX();
+                visionDriveOK = false;
+                break;
+                
             case 1 | 4: // the target is on the left
                 yxSpeed[0] = 0;
                 yxSpeed[1] = 0.5;
@@ -148,7 +159,7 @@ public class Base extends Subsystem {
                 break;
 
             case 3: // the target is on the centre
-                yxSpeed[0] = 0; // modified for further version
+                yxSpeed[0] = Robot.oi.motionStick.getY(); // modified for further version
                 yxSpeed[1] = 0;
                 visionDriveOK = true;
                 break;
