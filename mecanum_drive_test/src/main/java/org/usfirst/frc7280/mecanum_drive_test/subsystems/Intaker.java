@@ -42,7 +42,7 @@ public class Intaker extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new SolenoidActivate());
+         // setDefaultCommand(new SolenoidActivate());
     }
 
     @Override

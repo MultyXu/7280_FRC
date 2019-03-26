@@ -55,7 +55,7 @@ public class Arm extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new ManualArm());
-    setDefaultCommand(new ArmChange());
+    // setDefaultCommand(new ArmChange());
     //modify needed check whether they will interrupt themselves
   }
 

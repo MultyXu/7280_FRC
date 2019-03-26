@@ -23,7 +23,7 @@ public class Lift extends Command {
     requires(Robot.elevator);
     requires(Robot.base);
     requires(Robot.arm);
-    requires(Robot.intaker);
+    // requires(Robot.intaker);
 
     // determine target position
     targetPosition = _position;
@@ -53,7 +53,7 @@ public class Lift extends Command {
         finished = true;
       } else {
         Robot.base.speed(Robot.base.visionDrive()[0], Robot.base.visionDrive()[1], Robot.base.visionTurn());
-        //Robot.base.speedDrive();
+        Robot.base.speedDrive();
       }
     }
   }

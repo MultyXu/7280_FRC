@@ -48,7 +48,7 @@ public class Elevator extends Subsystem {
 
     // set whether you need to invert the motor to get right value
     elevatorMaster.setInverted(Constants.kMotorInverted);
-    elevatorSlave.setInverted(true); // modified
+    elevatorSlave.setInverted(false); // modified
 
     robotMap.setMotorPID(
     elevatorMaster, 

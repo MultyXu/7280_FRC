@@ -24,8 +24,11 @@ public class retreiveClimb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climb.retrieveFront();
-    Robot.climb.retrieveBack();
+    if (Robot.oi.motionStick.getRawButton(3)) {
+      Robot.climb.retrieveFront();
+      Robot.climb.retrieveBack();
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

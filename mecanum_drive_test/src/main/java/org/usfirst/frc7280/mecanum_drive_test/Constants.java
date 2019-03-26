@@ -51,7 +51,7 @@ public class Constants {
     public static final int kSecondLevel = -30000;
     public static final int kThirdLevel = -60000;
     public static final int kFourthLevel = -90000;
-    public static final int kFifthLevel = -125000;
+    public static final int kFifthLevel = -110000;
 
     // Elevator current limit values
     public static final int kContinueCurrentLimit = 18;
@@ -73,7 +73,7 @@ public class Constants {
     
     // Arm lift values
     public static final int kLift = -3000;
-    public static final int kDown = -33000;
+    public static final int kDown = -34000;
 
 
     // climb PID values and height

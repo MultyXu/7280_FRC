@@ -31,14 +31,19 @@ public class ArmChange extends Command {
   @Override
   protected void execute() {
     // false is lift , ture is down
-    if (Robot.oi.functionStick.getRawButtonPressed(8)){
-      change = !change;
+    if (Robot.oi.functionStick.getRawButton(8)){
+      // change = !change;
+      Robot.arm.down();
     }
-    if (!change) {
+
+    if (Robot.oi.functionStick.getRawButton(7)) {
       Robot.arm.lift();
-    } else {
-    Robot.arm.down();
     }
+    // if (!change) {
+    //   Robot.arm.lift();
+    // } else {
+    //   Robot.arm.down();
+    // }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -56,13 +61,13 @@ public class ArmChange extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    if (Robot.oi.functionStick.getRawButtonPressed(8)){
-      change = !change;
-    }
-    if (!change) {
-      Robot.arm.lift();
-    } else {
-    Robot.arm.down();
-    }
-  }
+  //   if (Robot.oi.functionStick.getRawButtonPressed(8)){
+  //     change = !change;
+  //   }
+  //   if (!change) {
+  //     Robot.arm.lift();
+  //   } else {
+  //   Robot.arm.down();
+  //   }
+   }
 }

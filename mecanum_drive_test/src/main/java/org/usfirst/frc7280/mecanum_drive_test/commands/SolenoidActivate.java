@@ -31,15 +31,17 @@ public class SolenoidActivate extends Command {
   @Override
   protected void execute() {
     // false is retreive, true is activate
-    if (Robot.oi.functionStick.getRawButtonPressed(9)){
-      change = !change;
-    }
-    if (!change) {
-      Robot.intaker.cylinderDown();
-    } else {
-      Robot.intaker.cylinderUp();
-    }
-    SmartDashboard.putBoolean("solenoid activate", change);
+    // if (Robot.oi.functionStick.getRawButtonPressed(9)){
+    //   change = !change;
+    // }
+    // if (!change) {
+    //   Robot.intaker.cylinderDown();
+    // } else {
+    //   Robot.intaker.cylinderUp();
+    // }
+    // SmartDashboard.putBoolean("solenoid activate", change);
+    Robot.intaker.cylinderDown();
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -57,14 +59,16 @@ public class SolenoidActivate extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    if (Robot.oi.functionStick.getRawButtonPressed(9)){
-      change = !change;
-    }
-    if (!change) {
-      Robot.intaker.cylinderDown();
-    } else {
-      Robot.intaker.cylinderUp();
-    }
-    SmartDashboard.putBoolean("solenoid activate", change);
-  }
+  //   if (Robot.oi.functionStick.getRawButtonPressed(9)){
+  //     change = !change;
+  //   }
+  //   if (!change) {
+  //     Robot.intaker.cylinderDown();
+  //   } else {
+  //     Robot.intaker.cylinderUp();
+  //   }
+  //   SmartDashboard.putBoolean("solenoid activate", change);
+    Robot.intaker.cylinderUp();
+
+   }
 }

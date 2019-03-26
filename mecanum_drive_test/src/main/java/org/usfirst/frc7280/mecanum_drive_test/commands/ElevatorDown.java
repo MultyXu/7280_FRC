@@ -17,7 +17,7 @@ public class ElevatorDown extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.elevator);
-    requires(Robot.intaker);
+    // requires(Robot.intaker);
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +30,7 @@ public class ElevatorDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intaker.cylinderUp();
+    // Robot.intaker.cylinderUp();
     Robot.elevator.elevatorDown();
   }
 

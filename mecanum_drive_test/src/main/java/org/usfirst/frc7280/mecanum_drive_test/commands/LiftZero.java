@@ -36,7 +36,7 @@ public class LiftZero extends Command {
     Robot.elevator.liftToPosition(targetPosition);
     x.change = false;
     Robot.arm.lift();
-    // modify needed after installing 霍尔开关
+    // modify needed after installing 
   }
 
   // Make this return true when this Command no longer needs to run execute()
