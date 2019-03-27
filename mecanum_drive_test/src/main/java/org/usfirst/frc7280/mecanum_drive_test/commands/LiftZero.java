@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LiftZero extends Command {
 
   int targetPosition;
-  ArmChange x = new ArmChange();
 
 
   public LiftZero(int _position) {
@@ -33,9 +32,8 @@ public class LiftZero extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.liftToPosition(targetPosition);
-    x.change = false;
     Robot.arm.lift();
+    Robot.elevator.liftToPosition(targetPosition);
     // modify needed after installing 
   }
 
@@ -49,6 +47,7 @@ public class LiftZero extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    // Robot.arm.lift();
   }
 
   // Called when another command which requires one or more of the same

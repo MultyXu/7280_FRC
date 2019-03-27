@@ -14,8 +14,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ArmDown extends Command {
 
-  ArmChange x = new ArmChange();
-
 
   public ArmDown() {
     // Use requires() here to declare subsystem dependencies
@@ -31,7 +29,6 @@ public class ArmDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    x.change = true;
     Robot.arm.down();
   }
 
@@ -44,7 +41,6 @@ public class ArmDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.arm.down();
   }
 
   // Called when another command which requires one or more of the same

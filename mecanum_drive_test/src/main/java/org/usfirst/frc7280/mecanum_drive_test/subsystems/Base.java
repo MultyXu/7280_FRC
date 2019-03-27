@@ -81,11 +81,11 @@ public class Base extends Subsystem {
         motorMode(NeutralMode.Coast);
         configVelocityPID();
 
-        if (Robot.elevator.targetPosition > -10000){
-            frontLeftSpeed = (yValue - xValue - zValue / 1.3) * 1200 * 2;
-            rearLeftSpeed = (yValue + xValue - zValue / 1.3) * 1200 * 2;
-            frontRightSpeed = (yValue + xValue + zValue / 1.3) * 1200 * 2;
-            rearRighttSpeed = (yValue - xValue + zValue / 1.3) * 1200 * 2;
+        if (Robot.elevator.targetPosition > -50000){
+            frontLeftSpeed = (yValue - xValue - zValue / 1.15) * 1800 * 2;
+            rearLeftSpeed = (yValue + xValue - zValue / 1.15) * 1800 * 2;
+            frontRightSpeed = (yValue + xValue + zValue / 1.15) * 1800 * 2;
+            rearRighttSpeed = (yValue - xValue + zValue / 1.15) * 1800 * 2;
         } else {
             frontLeftSpeed = (yValue - xValue - zValue / 1.3) * 750 * 2;
             rearLeftSpeed = (yValue + xValue - zValue / 1.3) * 750 * 2;
@@ -260,7 +260,7 @@ public class Base extends Subsystem {
 
     public void configVelocityPID(){
         robotMap.setMotorPID(leftFrontMotor, 0.197, 0, 0, 0);
-        robotMap.setMotorPID(leftRearMotor, 0.197, 0, 0, 0);
+        robotMap.setMotorPID(leftRearMotor, 0.21, 0, 0, 0);
         robotMap.setMotorPID(rightFrontMotor, 0.197, 0, 0, 0);
         robotMap.setMotorPID(rightRearMotor, 0.197, 0, 0, 0);
 

@@ -51,7 +51,7 @@ public class Climb extends Subsystem {
     climbMotionMotor.setInverted(true);
     //frontSlaveMotor.follow(frontMasterMotor);
 
-    robotMap.setMotorPID(backClimbMotor, 0, 0.07, 0, 0);
+    robotMap.setMotorPID(backClimbMotor, 0, 0.1, 0, 0);
     robotMap.setMotorPID(frontMasterMotor, 0, 0.14, 0, 0);
     robotMap.setMotorPID(frontSlaveMotor, 0, 0.14, 0, 0);
 
@@ -70,15 +70,21 @@ public class Climb extends Subsystem {
   }
 
   public void climbStage(int _level){
-    int step = _level / 4;
+    int step;
+
+    if (_level == Constants.kClimbSecondLevel){
+      step = _level / 4;
+    } else {
+      step = _level /2;
+    }
 
     // robotMap.TalonSRXInit(backClimbMotor, Constants.kClimbPeakOutput);
     // robotMap.TalonSRXInit(frontMasterMotor, Constants.kClimbPeakOutput);
     // robotMap.TalonSRXInit(frontSlaveMotor, Constants.kClimbPeakOutput);
 
-    backClimbMotor.configClosedLoopPeakOutput(0, Constants.kClimbPeakOutput);
-    frontMasterMotor.configClosedLoopPeakOutput(0, Constants.kClimbPeakOutput);
-    backClimbMotor.configClosedLoopPeakOutput(0, Constants.kClimbPeakOutput);
+    // backClimbMotor.configClosedLoopPeakOutput(0, Constants.kClimbPeakOutput);
+    // frontMasterMotor.configClosedLoopPeakOutput(0, Constants.kClimbPeakOutput);
+    // backClimbMotor.configClosedLoopPeakOutput(0, Constants.kClimbPeakOutput);
 
     
     if (Math.abs(Math.abs(frontMasterMotor.getSelectedSensorPosition()) - level)  <= 1000 
@@ -95,6 +101,8 @@ public class Climb extends Subsystem {
       frontMasterMotor.set(ControlMode.Position, level);
       frontSlaveMotor.set(ControlMode.Position, level);
       backClimbMotor.set(ControlMode.Position, level);
+      
+      System.out.println(frontMasterMotor.getErrorDerivative());
 
       SmartDashboard.putNumber("clim num", level);
       SmartDashboard.putNumber("frontMaster pos", frontMasterMotor.getSelectedSensorPosition());
@@ -128,6 +136,7 @@ public class Climb extends Subsystem {
 
     frontMasterMotor.configClosedLoopPeakOutput(0, Constants.kClimbBackOutput);
     backClimbMotor.configClosedLoopPeakOutput(0, Constants.kClimbBackOutput);
+    Robot.base.drive(-0.2, 0, 0);
     
 
     frontMasterMotor.set(ControlMode.Position, 0);

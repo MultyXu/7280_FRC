@@ -29,7 +29,7 @@ public class Constants {
     public static final double kElevatorI = 0.0;
     public static final double kElevatorD = 0.0;
     public static final double kElevatorF = 0.0;
-    public static final double kElevatorPeakOutput = 0.4;
+    public static final double kElevatorPeakOutput = 0.5;
     
     // elevator down pid
     public static final double kElevatorDownP = 0.04;
@@ -43,15 +43,15 @@ public class Constants {
     public static final double kElevatorHigherI = 0.0;
     public static final double kElevatorHigherD = 0.03;
     public static final double kElevatorHigherF = 0.0;
-    public static final double kElevatorHigherPeakOutput = 0.5;
+    public static final double kElevatorHigherPeakOutput = 0.6;
 
     // Elevator height values
     public static final int kZeroLevel = 0;
     public static final int kFirstLevel = -13000;
     public static final int kSecondLevel = -30000;
     public static final int kThirdLevel = -60000;
-    public static final int kFourthLevel = -90000;
-    public static final int kFifthLevel = -110000;
+    public static final int kFourthLevel = -94000;
+    public static final int kFifthLevel = -120000;
 
     // Elevator current limit values
     public static final int kContinueCurrentLimit = 18;
@@ -72,15 +72,15 @@ public class Constants {
     public static final double kArmPeakOutput = 0.2;
     
     // Arm lift values
-    public static final int kLift = -3000;
+    public static final int kLift = -4000;
     public static final int kDown = -34000;
 
 
     // climb PID values and height
-    public static final double kClimbPeakOutput = 0.6;
-    public static final double kClimbBackOutput = 0.9;
-    public static final int kClimbSecondLevel = 166000;
-    public static final int kClimbFirstLevel = 100000;
+    public static final double kClimbPeakOutput = 0.9;
+    public static final double kClimbBackOutput = 1;
+    public static final int kClimbSecondLevel = 170000;
+    public static final int kClimbFirstLevel = 170000/3 + 20000;
     public static final int kRetrieveLevel = 0;
     public static final int climbSpeed = 2000;
 }

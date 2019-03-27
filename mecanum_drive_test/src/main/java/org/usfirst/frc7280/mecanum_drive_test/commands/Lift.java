@@ -21,9 +21,9 @@ public class Lift extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.elevator);
-    requires(Robot.base);
+    // requires(Robot.base); // moified
     requires(Robot.arm);
-    // requires(Robot.intaker);
+    requires(Robot.intaker);
 
     // determine target position
     targetPosition = _position;
@@ -40,16 +40,26 @@ public class Lift extends Command {
   protected void execute() {
     finished = false;
 
-    // if (targetPosition == Constants.kFirstLevel) {
-    //   Robot.arm.down();
-    // }
+    if (targetPosition == Constants.kFirstLevel) {
+      Robot.arm.down();
+      Robot.intaker.cylinderUp(); // added
+    }
 
     if (Robot.judge.manualModeOn) {
+      if (targetPosition != Constants.kFirstLevel){
+        Robot.arm.lift();
+      }
       Robot.elevator.liftToPosition(targetPosition);
+      // Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
     } else {
       if (Robot.base.visionDriveOK && Robot.base.visionTurnOK) {
         Robot.elevator.liftToPosition(targetPosition);
-        // Robot.intaker.cylinderUp();
+
+        // modified 
+        if (targetPosition == Constants.kThirdLevel ||
+        targetPosition == Constants.kFifthLevel)
+          Robot.intaker.cylinderDown();
+          Robot.base.drive(0, 0, 0); // added
         finished = true;
       } else {
         Robot.base.speed(Robot.base.visionDrive()[0], Robot.base.visionDrive()[1], Robot.base.visionTurn());

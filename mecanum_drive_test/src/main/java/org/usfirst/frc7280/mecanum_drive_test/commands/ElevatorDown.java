@@ -13,17 +13,21 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ElevatorDown extends Command {
+
   public ElevatorDown() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.elevator);
     // requires(Robot.intaker);
+    // requires(Robot.base);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     Robot.elevator.elevatorPosition = Robot.elevator.elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx);
+    Robot.base.zeroSensorPostition();
+    Robot.base.configPositionPID();
 
   }
 
@@ -32,6 +36,7 @@ public class ElevatorDown extends Command {
   protected void execute() {
     // Robot.intaker.cylinderUp();
     Robot.elevator.elevatorDown();
+    // Robot.base.moveY(-5000);
   }
 
   // Make this return true when this Command no longer needs to run execute()

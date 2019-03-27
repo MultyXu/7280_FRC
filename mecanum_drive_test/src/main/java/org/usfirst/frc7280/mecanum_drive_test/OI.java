@@ -80,6 +80,8 @@ public class OI {
     public JoystickButton grabBall;
     public JoystickButton putBall;
 
+    // modify, turn 180
+    public JoystickButton turn180;
     
     public OI() {
     
@@ -102,7 +104,7 @@ public class OI {
 
         // asociate elevaor button to function 
         // liftZero.whenPressed(new LiftZero(Constants.kZeroLevel));
-        liftZeroLevel.whenPressed(new Lift(Constants.kZeroLevel));
+        liftZeroLevel.whenPressed(new LiftZero(Constants.kZeroLevel));
         liftFirstLevel.whenPressed(new Lift(Constants.kFirstLevel));
         liftSecondLevel.whenPressed(new Lift(Constants.kSecondLevel));
         liftThirdLevel.whenPressed(new Lift(Constants.kThirdLevel));
@@ -133,6 +135,10 @@ public class OI {
 
         shoot.whileHeld(new Take());
         grab.whileHeld(new Grab());
+
+        turn180 = new JoystickButton(motionStick, 1);
+
+        turn180.whenPressed(new MoveZ(Constants.leftTurn90 * 2));
 
         // auto plate
         // grabPlate = new JoystickButton(motionStick, 3);
