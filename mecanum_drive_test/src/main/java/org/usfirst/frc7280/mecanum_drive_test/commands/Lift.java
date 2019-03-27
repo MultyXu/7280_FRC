@@ -54,7 +54,7 @@ public class Lift extends Command {
     } else {
       if (Robot.base.visionDriveOK && Robot.base.visionTurnOK) {
         Robot.elevator.liftToPosition(targetPosition);
-
+        Robot.arm.lift();
         // modified 
         if (targetPosition == Constants.kThirdLevel ||
         targetPosition == Constants.kFifthLevel)
