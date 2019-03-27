@@ -21,7 +21,7 @@ public class Lift extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.elevator);
-    // requires(Robot.base); // moified
+    requires(Robot.base); // moified
     requires(Robot.arm);
     requires(Robot.intaker);
 
@@ -38,32 +38,53 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
     finished = false;
+
+    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
 
     if (targetPosition == Constants.kFirstLevel) {
       Robot.arm.down();
       Robot.intaker.cylinderUp(); // added
+      Robot.elevator.liftToPosition(targetPosition);
+
     }
 
     if (Robot.judge.manualModeOn) {
+
       if (targetPosition != Constants.kFirstLevel){
         Robot.arm.lift();
       }
+
+      if (targetPosition == Constants.kThirdLevel ||
+      targetPosition == Constants.kFifthLevel){
+        Robot.intaker.cylinderDown();
+      }
+      
       Robot.elevator.liftToPosition(targetPosition);
       // Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
     } else {
       if (Robot.base.visionDriveOK && Robot.base.visionTurnOK) {
+
         Robot.elevator.liftToPosition(targetPosition);
-        Robot.arm.lift();
+
         // modified 
         if (targetPosition == Constants.kThirdLevel ||
-        targetPosition == Constants.kFifthLevel)
+        targetPosition == Constants.kFifthLevel) {
           Robot.intaker.cylinderDown();
-          Robot.base.drive(0, 0, 0); // added
+          // Robot.base.drive(0, 0, 0); // added
+        }
+
         finished = true;
       } else {
+
+        if (targetPosition != Constants.kFirstLevel){
+          Robot.arm.lift();
+        }
+
         Robot.base.speed(Robot.base.visionDrive()[0], Robot.base.visionDrive()[1], Robot.base.visionTurn());
         Robot.base.speedDrive();
+
       }
     }
   }

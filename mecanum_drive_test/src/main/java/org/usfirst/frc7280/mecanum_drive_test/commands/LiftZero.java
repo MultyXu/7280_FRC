@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LiftZero extends Command {
 
   int targetPosition;
+  boolean finished = false;
 
 
   public LiftZero(int _position) {
@@ -34,14 +35,30 @@ public class LiftZero extends Command {
   protected void execute() {
     Robot.arm.lift();
     Robot.elevator.liftToPosition(targetPosition);
+
+    Robot.intaker.cylinderDown();
+
     // modify needed after installing 
+
+    if (Robot.oi.functionStick.getPOV() == 90) {
+      if (Robot.base.visionDriveOK && Robot.base.visionTurnOK) {
+
+        Robot.elevator.liftToPosition(targetPosition);
+
+        finished = true;
+      } else {
+
+        Robot.base.speed(Robot.base.visionDrive()[0], Robot.base.visionDrive()[1], Robot.base.visionTurn());
+        Robot.base.speedDrive();
+
+      }
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Math.abs(Robot.elevator.elevatorPosition - targetPosition) < 1000
-        && Robot.elevator.elevatorMaster.getSelectedSensorVelocity() == 0);
+    return finished;
   }
 
   // Called once after isFinished returns true
